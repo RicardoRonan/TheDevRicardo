@@ -105,7 +105,7 @@
         <section class="related-posts" v-if="relatedPosts.length">
           <h3 class="related-title">Related Posts</h3>
           <div class="related-grid">
-            <div v-for="post in relatedPosts" :key="post.ID" class="related-card">
+            <div v-for="post in relatedPosts" :key="post.id" class="related-card">
               <h4 class="related-post-title" v-html="post.title"></h4>
               <p class="related-post-excerpt" v-html="post.excerpt"></p>
               <router-link :to="`/blog/${getBlogSlug(post)}`" class="btn btn-secondary btn-sm read-more-link">
@@ -136,33 +136,23 @@ export default {
     const loadBlogPost = async () => {
       loading.value = true;
       error.value = null;
-      
       try {
-        // Try to load by slug first, then by ID if slug fails
-        let response;
-        try {
-          response = await axios.get(
-            `https://public-api.wordpress.com/rest/v1.1/sites/thedevricardo.wordpress.com/posts/slug:${route.params.id}`
-          );
-        } catch (slugError) {
-          // If slug fails, try by ID
-          response = await axios.get(
-            `https://public-api.wordpress.com/rest/v1.1/sites/thedevricardo.wordpress.com/posts/${route.params.id}`
-          );
-        }
-        
+        // Fetch by slug from new WP REST API
+        const response = await axios.get(
+          `https://dev-thedevricardo.pantheonsite.io/wp-json/wp/v2/posts?slug=${route.params.id}&_embed`
+        );
+        const post = response.data[0];
+        if (!post) throw new Error('Post not found');
         blog.value = {
-          title: response.data.title,
-          content: response.data.content,
-          date: response.data.date,
-          tags: response.data.tags || [],
-          excerpt: response.data.excerpt,
-          slug: response.data.slug,
-          ID: response.data.ID
+          title: post.title.rendered,
+          content: post.content.rendered,
+          date: post.date,
+          tags: post.tags || [],
+          excerpt: post.excerpt.rendered,
+          slug: post.slug,
+          id: post.id
         };
-
-        // Load related posts
-        await loadRelatedPosts();
+        await loadRelatedPosts(post.id);
       } catch (err) {
         console.error('Error fetching post:', err);
         error.value = 'Failed to load blog post. Please try again.';
@@ -171,12 +161,17 @@ export default {
       }
     };
 
-    const loadRelatedPosts = async () => {
+    const loadRelatedPosts = async (excludeId) => {
       try {
         const response = await axios.get(
-          'https://public-api.wordpress.com/rest/v1.1/sites/thedevricardo.wordpress.com/posts/?number=3'
+          'https://dev-thedevricardo.pantheonsite.io/wp-json/wp/v2/posts?per_page=3&_embed'
         );
-        relatedPosts.value = response.data.posts.filter(post => post.ID !== blog.value?.ID);
+        relatedPosts.value = response.data.filter(post => post.id !== excludeId).map(post => ({
+          title: post.title.rendered,
+          excerpt: post.excerpt.rendered,
+          slug: post.slug,
+          id: post.id
+        }));
       } catch (err) {
         console.error('Error fetching related posts:', err);
       }
@@ -193,8 +188,9 @@ export default {
 
     const readingTime = computed(() => {
       if (!blog.value?.content) return 0;
+      const html = typeof blog.value.content === 'string' ? blog.value.content : blog.value.content?.rendered || '';
       const wordsPerMinute = 200;
-      const wordCount = blog.value.content.replace(/<[^>]*>/g, '').split(/\s+/).length;
+      const wordCount = html.replace(/<[^>]*>/g, '').split(/\s+/).length;
       return Math.ceil(wordCount / wordsPerMinute);
     });
 
@@ -233,10 +229,7 @@ export default {
         .trim();
     };
 
-    const getBlogSlug = (blog) => {
-      // Use WordPress slug if available, otherwise generate from title
-      return blog.slug || generateSlug(blog.title);
-    };
+    const getBlogSlug = (blog) => blog.slug;
 
     onMounted(() => {
       loadBlogPost();

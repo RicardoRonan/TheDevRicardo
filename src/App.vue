@@ -61,7 +61,6 @@ export default {
   text-align: center;
   overflow-x: hidden;
   background-color: var(--background-color);
-  user-select: none;
   line-height: 1.6; 
   padding: 2rem;
 }

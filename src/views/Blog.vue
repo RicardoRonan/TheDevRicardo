@@ -37,12 +37,12 @@
 
         <!-- Blog List -->
         <div v-else class="blog-list-grid">
-          <div v-for="blog in blogs" :key="blog.ID" class="blog-card" tabindex="0">
+          <div v-for="blog in blogs" :key="blog.id" class="blog-card" tabindex="0">
             <!-- Featured Image -->
-            <div class="card-image-container" v-if="blog.featured_image">
+            <div class="card-image-container" v-if="blog.featured_media_url">
               <img 
-                :src="blog.featured_image" 
-                :alt="blog.title"
+                :src="blog.featured_media_url" 
+                :alt="blog.title.rendered"
                 class="card-image"
                 loading="lazy"
               />
@@ -50,7 +50,7 @@
             
             <div class="card-content">
               <div class="card-header">
-                <h3 class="card-title" v-html="blog.title"></h3>
+                <h3 class="card-title" v-html="blog.title.rendered"></h3>
                 <div class="card-meta">
                   <span class="meta-item">
                     <i class="fa-regular fa-calendar"></i>
@@ -68,22 +68,22 @@
               </div>
               
               <!-- Tags Section -->
-              <div class="card-tags" v-if="blog.tags && Object.keys(blog.tags).length">
+              <div class="card-tags" v-if="blog.tags && blog.tags.length">
                 <div class="tags-container">
                   <span 
-                    v-for="tag in Object.keys(blog.tags).slice(0, 3)" 
+                    v-for="tag in blog.tags.slice(0, 3)" 
                     :key="tag" 
                     class="tag"
                   >
                     {{ tag }}
                   </span>
-                  <span v-if="Object.keys(blog.tags).length > 3" class="tag-more">
-                    +{{ Object.keys(blog.tags).length - 3 }} more
+                  <span v-if="blog.tags.length > 3" class="tag-more">
+                    +{{ blog.tags.length - 3 }} more
                   </span>
                 </div>
               </div>
               
-              <router-link :to="`/blog/${getBlogSlug(blog)}`" class="btn btn-primary btn-md card-btn" :aria-label="`Read more about ${blog.title}`">
+              <router-link :to="`/blog/${getBlogSlug(blog)}`" class="btn btn-primary btn-md card-btn" :aria-label="`Read more about ${blog.title.rendered}`">
                 Read <i class="fa-solid fa-arrow-right"></i>
               </router-link>
             </div>
@@ -110,9 +110,9 @@ export default {
       error.value = null;
       try {
         const response = await axios.get(
-          'https://public-api.wordpress.com/rest/v1.1/sites/thedevricardo.wordpress.com/posts/?number=10'
+          'https://dev-thedevricardo.pantheonsite.io/wp-json/wp/v2/posts?per_page=10&_embed'
         );
-        blogs.value = response.data.posts;
+        blogs.value = response.data;
       } catch (err) {
         error.value = 'Please check your connection or try again later.';
       } finally {
@@ -131,14 +131,15 @@ export default {
 
     const readingTime = (content) => {
       if (!content) return 0;
+      const html = typeof content === 'string' ? content : content.rendered;
       const wordsPerMinute = 200;
-      const wordCount = content.replace(/<[^>]*>/g, '').split(/\s+/).length;
+      const wordCount = html.replace(/<[^>]*>/g, '').split(/\s+/).length;
       return Math.ceil(wordCount / wordsPerMinute);
     };
 
     const truncateExcerpt = (excerpt) => {
-      // Remove HTML tags and limit to 180 chars
-      const text = excerpt.replace(/<[^>]*>/g, '');
+      const html = typeof excerpt === 'string' ? excerpt : excerpt?.rendered || '';
+      const text = html.replace(/<[^>]*>/g, '');
       return text.length > 180 ? text.slice(0, 180) + '...' : text;
     };
 
@@ -151,10 +152,7 @@ export default {
         .trim();
     };
 
-    const getBlogSlug = (blog) => {
-      // Use WordPress slug if available, otherwise generate from title
-      return blog.slug || generateSlug(blog.title);
-    };
+    const getBlogSlug = (blog) => blog.slug;
 
     onMounted(() => {
       fetchBlogs();

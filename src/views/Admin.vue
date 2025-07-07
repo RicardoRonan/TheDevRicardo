@@ -46,260 +46,354 @@
 
     <!-- Admin Dashboard -->
     <div v-else class="admin-dashboard">
-      <!-- Header -->
-      <div class="admin-header">
-        <h1 class="dashboard-title">Resource Management</h1>
-        <button @click="logout" class="btn btn-tertiary btn-sm logout-btn">
-          <i class="fa-solid fa-sign-out-alt"></i>
-          Logout
-        </button>
+      <!-- Selection Tabs -->
+      <div class="admin-tabs">
+        <button :class="['tab-btn', { active: adminTab === 'blogs' }]" @click="adminTab = 'blogs'">Manage Blogs</button>
+        <button :class="['tab-btn', { active: adminTab === 'resources' }]" @click="adminTab = 'resources'">Manage Resources</button>
       </div>
 
-      <!-- Add Category Form Section -->
-      <div class="category-form-section">
-        <h2 class="section-title">Add New Category</h2>
-        
-        <form @submit.prevent="addCategory" class="category-form">
-          <div class="form-row">
-            <div class="form-group">
-              <label for="categoryId" class="form-label">Category ID *</label>
-              <input
-                type="text"
-                id="categoryId"
-                v-model="newCategory.id"
-                class="form-input"
-                placeholder="e.g., developmentTools"
-                required
-              />
-            </div>
-            
-            <div class="form-group">
-              <label for="categoryName" class="form-label">Category Name *</label>
-              <input
-                type="text"
-                id="categoryName"
-                v-model="newCategory.name"
-                class="form-input"
-                placeholder="e.g., Development Tools"
-                required
-              />
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="categoryIcon" class="form-label">Icon (Emoji)</label>
-            <input
-              type="text"
-              id="categoryIcon"
-              v-model="newCategory.icon"
-              class="form-input"
-              placeholder="e.g., 🛠️"
-              maxlength="2"
-            />
-          </div>
-
-          <div class="form-actions">
-            <button type="submit" class="btn btn-primary btn-md" :disabled="submittingCategory">
-              <i v-if="submittingCategory" class="fa-solid fa-spinner fa-spin"></i>
-              <i v-else class="fa-solid fa-plus"></i>
-              {{ submittingCategory ? 'Adding...' : 'Add Category' }}
-            </button>
-            <button type="button" @click="resetCategoryForm" class="btn btn-tertiary btn-md">
-              <i class="fa-solid fa-undo"></i>
-              Reset Form
-            </button>
-          </div>
-        </form>
-
-        <!-- Success/Error Messages -->
-        <div v-if="categoryMessage" :class="['message', categoryMessageType]">
-          <i :class="categoryMessageIcon"></i>
-          {{ categoryMessage }}
+      <!-- Blog Management Section -->
+      <div v-if="adminTab === 'blogs'">
+        <div class="admin-header">
+          <h1 class="dashboard-title">Blog Management</h1>
+          <button @click="logout" class="btn btn-tertiary btn-sm logout-btn">
+            <i class="fa-solid fa-sign-out-alt"></i>
+            Logout
+          </button>
         </div>
-      </div>
 
-      <!-- Recent Categories -->
-      <div class="recent-categories-section">
-        <h2 class="section-title">Existing Categories</h2>
-        <div class="recent-categories">
-          <div v-for="category in categories" :key="category.id" class="recent-category-item">
-            <div class="category-info">
-              <div class="category-icon">{{ category.icon || '📁' }}</div>
-              <div class="category-details">
-                <h3 class="category-name">{{ category.name }}</h3>
-                <p class="category-id">ID: {{ category.id }}</p>
+        <!-- Add/Edit Blog Form -->
+        <div class="blog-form-section">
+          <h2 class="section-title">{{ editingBlogId ? 'Edit Blog' : 'Add New Blog' }}</h2>
+          <form @submit.prevent="editingBlogId ? updateBlog() : addBlog()" class="blog-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="blogTitle" class="form-label">Title *</label>
+                <input type="text" id="blogTitle" v-model="blogForm.title" class="form-input" placeholder="Blog Title" required />
+              </div>
+              <div class="form-group">
+                <label for="blogAuthor" class="form-label">Author *</label>
+                <input type="text" id="blogAuthor" v-model="blogForm.author" class="form-input" placeholder="Author Name" required />
               </div>
             </div>
-            <div class="category-actions">
-              <button @click="editCategory(category)" class="btn btn-secondary btn-sm">
-                <i class="fa-solid fa-edit"></i>
+            <div class="form-group">
+              <label for="blogContent" class="form-label">Content *</label>
+              <textarea id="blogContent" v-model="blogForm.content" class="form-textarea" placeholder="Blog content..." rows="6" required></textarea>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="blogTags" class="form-label">Tags (comma-separated)</label>
+                <input type="text" id="blogTags" v-model="blogForm.tagsInput" class="form-input" placeholder="e.g., Vue, Firebase, Portfolio" />
+              </div>
+              <div class="form-group">
+                <label for="blogImageUrl" class="form-label">Image URL</label>
+                <input type="url" id="blogImageUrl" v-model="blogForm.imageUrl" class="form-input" placeholder="https://example.com/image.jpg" />
+              </div>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary btn-md" :disabled="blogSubmitting">
+                <i v-if="blogSubmitting" class="fa-solid fa-spinner fa-spin"></i>
+                <i v-else :class="editingBlogId ? 'fa-solid fa-save' : 'fa-solid fa-plus'"></i>
+                {{ blogSubmitting ? (editingBlogId ? 'Saving...' : 'Adding...') : (editingBlogId ? 'Save Changes' : 'Add Blog') }}
               </button>
-              <button @click="deleteCategory(category.id)" class="btn btn-primary btn-sm">
-                <i class="fa-solid fa-trash"></i>
+              <button type="button" @click="resetBlogForm" class="btn btn-tertiary btn-md">
+                <i class="fa-solid fa-undo"></i>
+                Reset Form
               </button>
+            </div>
+          </form>
+          <div v-if="blogMessage" :class="['message', blogMessageType]">
+            <i :class="blogMessageIcon"></i>
+            {{ blogMessage }}
+          </div>
+        </div>
+
+        <!-- Blog List -->
+        <div class="recent-blogs-section">
+          <h2 class="section-title">Recent Blogs</h2>
+          <div class="recent-blogs">
+            <div v-for="blog in recentBlogs" :key="blog.id" class="recent-blog-item">
+              <div class="blog-info">
+                <div class="blog-details">
+                  <h3 class="blog-title">{{ blog.title }}</h3>
+                  <p class="blog-meta">By {{ blog.author }} | {{ formatDate(blog.date) }}</p>
+                  <p class="blog-tags">Tags: <span v-for="tag in blog.tags" :key="tag" class="blog-tag">{{ tag }}</span></p>
+                  <p class="blog-content-preview">{{ blog.content.slice(0, 120) }}<span v-if="blog.content.length > 120">...</span></p>
+                </div>
+                <div v-if="blog.imageUrl" class="blog-image-preview">
+                  <img :src="blog.imageUrl" alt="Blog cover" style="max-width: 120px; max-height: 80px; border-radius: 0.25rem;" />
+                </div>
+              </div>
+              <div class="blog-actions">
+                <button @click="editBlog(blog)" class="btn btn-secondary btn-sm">
+                  <i class="fa-solid fa-edit"></i>
+                </button>
+                <button @click="deleteBlog(blog.id)" class="btn btn-primary btn-sm">
+                  <i class="fa-solid fa-trash"></i>
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Add Resource Form -->
-      <div class="resource-form-section">
-        <h2 class="section-title">Add New Resource</h2>
-        
-        <form @submit.prevent="addResource" class="resource-form">
-          <div class="form-row">
-            <div class="form-group">
-              <label for="resourceName" class="form-label">Resource Name *</label>
-              <input
-                type="text"
-                id="resourceName"
-                v-model="newResource.name"
-                class="form-input"
-                placeholder="e.g., VS Code"
-                required
-              />
+      <!-- Resource Management Section -->
+      <div v-if="adminTab === 'resources'">
+        <!-- Header -->
+        <div class="admin-header">
+          <h1 class="dashboard-title">Resource Management</h1>
+          <button @click="logout" class="btn btn-tertiary btn-sm logout-btn">
+            <i class="fa-solid fa-sign-out-alt"></i>
+            Logout
+          </button>
+        </div>
+
+        <!-- Add Category Form Section -->
+        <div class="category-form-section">
+          <h2 class="section-title">Add New Category</h2>
+          
+          <form @submit.prevent="addCategory" class="category-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="categoryId" class="form-label">Category ID *</label>
+                <input
+                  type="text"
+                  id="categoryId"
+                  v-model="newCategory.id"
+                  class="form-input"
+                  placeholder="e.g., developmentTools"
+                  required
+                />
+              </div>
+              
+              <div class="form-group">
+                <label for="categoryName" class="form-label">Category Name *</label>
+                <input
+                  type="text"
+                  id="categoryName"
+                  v-model="newCategory.name"
+                  class="form-input"
+                  placeholder="e.g., Development Tools"
+                  required
+                />
+              </div>
             </div>
-            
+
             <div class="form-group">
-              <label for="resourceIcon" class="form-label">Icon (Emoji)</label>
+              <label for="categoryIcon" class="form-label">Icon (Emoji)</label>
               <input
                 type="text"
-                id="resourceIcon"
-                v-model="newResource.icon"
+                id="categoryIcon"
+                v-model="newCategory.icon"
                 class="form-input"
-                placeholder="e.g., 💻"
+                placeholder="e.g., 🛠️"
                 maxlength="2"
               />
             </div>
-          </div>
 
-          <div class="form-group">
-            <label for="resourceDescription" class="form-label">Description *</label>
-            <textarea
-              id="resourceDescription"
-              v-model="newResource.description"
-              class="form-textarea"
-              placeholder="Brief description of the resource..."
-              rows="3"
-              required
-            ></textarea>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group">
-              <label for="resourceCategory" class="form-label">Category *</label>
-              <select
-                id="resourceCategory"
-                v-model="newResource.category"
-                class="form-select"
-                required
-              >
-                <option value="">Select a category</option>
-                <option v-for="category in categories" :key="category.id" :value="category.id">
-                  {{ category.name }}
-                </option>
-              </select>
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary btn-md" :disabled="submittingCategory">
+                <i v-if="submittingCategory" class="fa-solid fa-spinner fa-spin"></i>
+                <i v-else class="fa-solid fa-plus"></i>
+                {{ submittingCategory ? 'Adding...' : 'Add Category' }}
+              </button>
+              <button type="button" @click="resetCategoryForm" class="btn btn-tertiary btn-md">
+                <i class="fa-solid fa-undo"></i>
+                Reset Form
+              </button>
             </div>
-            
-            <div class="form-group">
-              <label for="resourceUrl" class="form-label">URL *</label>
-              <input
-                type="url"
-                id="resourceUrl"
-                v-model="newResource.url"
-                class="form-input"
-                placeholder="https://example.com"
-                required
-              />
-            </div>
-          </div>
+          </form>
 
-          <div class="form-group">
-            <label for="resourceTags" class="form-label">Tags (comma-separated)</label>
-            <input
-              type="text"
-              id="resourceTags"
-              v-model="newResource.tagsInput"
-              class="form-input"
-              placeholder="e.g., Free, JavaScript, Frontend"
-            />
+          <!-- Success/Error Messages -->
+          <div v-if="categoryMessage" :class="['message', categoryMessageType]">
+            <i :class="categoryMessageIcon"></i>
+            {{ categoryMessage }}
           </div>
+        </div>
 
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label">Features</label>
-              <div class="checkbox-group">
-                <label class="checkbox-item">
-                  <input type="checkbox" v-model="newResource.tutorial" />
-                  <span class="checkbox-label">Has Tutorial</span>
-                </label>
-                <label class="checkbox-item">
-                  <input type="checkbox" v-model="newResource.examples" />
-                  <span class="checkbox-label">Has Examples</span>
-                </label>
-                <label class="checkbox-item">
-                  <input type="checkbox" v-model="newResource.free" />
-                  <span class="checkbox-label">Free</span>
-                </label>
-                <label class="checkbox-item">
-                  <input type="checkbox" v-model="newResource.featured" />
-                  <span class="checkbox-label">Featured</span>
-                </label>
+        <!-- Recent Categories -->
+        <div class="recent-categories-section">
+          <h2 class="section-title">Existing Categories</h2>
+          <div class="recent-categories">
+            <div v-for="category in categories" :key="category.id" class="recent-category-item">
+              <div class="category-info">
+                <div class="category-icon">{{ category.icon || '📁' }}</div>
+                <div class="category-details">
+                  <h3 class="category-name">{{ category.name }}</h3>
+                  <p class="category-id">ID: {{ category.id }}</p>
+                </div>
+              </div>
+              <div class="category-actions">
+                <button @click="editCategory(category)" class="btn btn-secondary btn-sm">
+                  <i class="fa-solid fa-edit"></i>
+                </button>
+                <button @click="deleteCategory(category.id)" class="btn btn-primary btn-sm">
+                  <i class="fa-solid fa-trash"></i>
+                </button>
               </div>
             </div>
-            
+          </div>
+        </div>
+
+        <!-- Add Resource Form -->
+        <div class="resource-form-section">
+          <h2 class="section-title">Add New Resource</h2>
+          
+          <form @submit.prevent="addResource" class="resource-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="resourceName" class="form-label">Resource Name *</label>
+                <input
+                  type="text"
+                  id="resourceName"
+                  v-model="newResource.name"
+                  class="form-input"
+                  placeholder="e.g., VS Code"
+                  required
+                />
+              </div>
+              
+              <div class="form-group">
+                <label for="resourceIcon" class="form-label">Icon (Emoji)</label>
+                <input
+                  type="text"
+                  id="resourceIcon"
+                  v-model="newResource.icon"
+                  class="form-input"
+                  placeholder="e.g., 💻"
+                  maxlength="2"
+                />
+              </div>
+            </div>
+
             <div class="form-group">
-              <label for="resourcePricing" class="form-label">Pricing Info</label>
+              <label for="resourceDescription" class="form-label">Description *</label>
+              <textarea
+                id="resourceDescription"
+                v-model="newResource.description"
+                class="form-textarea"
+                placeholder="Brief description of the resource..."
+                rows="3"
+                required
+              ></textarea>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="resourceCategory" class="form-label">Category *</label>
+                <select
+                  id="resourceCategory"
+                  v-model="newResource.category"
+                  class="form-select"
+                  required
+                >
+                  <option value="">Select a category</option>
+                  <option v-for="category in categories" :key="category.id" :value="category.id">
+                    {{ category.name }}
+                  </option>
+                </select>
+              </div>
+              
+              <div class="form-group">
+                <label for="resourceUrl" class="form-label">URL *</label>
+                <input
+                  type="url"
+                  id="resourceUrl"
+                  v-model="newResource.url"
+                  class="form-input"
+                  placeholder="https://example.com"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="resourceTags" class="form-label">Tags (comma-separated)</label>
               <input
                 type="text"
-                id="resourcePricing"
-                v-model="newResource.pricing"
+                id="resourceTags"
+                v-model="newResource.tagsInput"
                 class="form-input"
-                placeholder="e.g., Free + Paid"
+                placeholder="e.g., Free, JavaScript, Frontend"
               />
             </div>
-          </div>
 
-          <div class="form-actions">
-            <button type="submit" class="btn btn-primary btn-md" :disabled="submitting">
-              <i v-if="submitting" class="fa-solid fa-spinner fa-spin"></i>
-              <i v-else class="fa-solid fa-plus"></i>
-              {{ submitting ? 'Adding...' : 'Add Resource' }}
-            </button>
-            <button type="button" @click="resetForm" class="btn btn-tertiary btn-md">
-              <i class="fa-solid fa-undo"></i>
-              Reset Form
-            </button>
-          </div>
-        </form>
-
-        <!-- Success/Error Messages -->
-        <div v-if="message" :class="['message', messageType]">
-          <i :class="messageIcon"></i>
-          {{ message }}
-        </div>
-      </div>
-
-      <!-- Recent Resources -->
-      <div class="recent-resources-section">
-        <h2 class="section-title">Recent Resources</h2>
-        <div class="recent-resources">
-          <div v-for="resource in recentResources" :key="resource.id" class="recent-resource-item">
-            <div class="resource-info">
-              <div class="resource-icon">{{ resource.icon }}</div>
-              <div class="resource-details">
-                <h3 class="resource-name">{{ resource.name }}</h3>
-                <p class="resource-category">{{ getCategoryName(resource.category) }}</p>
-                <p class="resource-description">{{ resource.description }}</p>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Features</label>
+                <div class="checkbox-group">
+                  <label class="checkbox-item">
+                    <input type="checkbox" v-model="newResource.tutorial" />
+                    <span class="checkbox-label">Has Tutorial</span>
+                  </label>
+                  <label class="checkbox-item">
+                    <input type="checkbox" v-model="newResource.examples" />
+                    <span class="checkbox-label">Has Examples</span>
+                  </label>
+                  <label class="checkbox-item">
+                    <input type="checkbox" v-model="newResource.free" />
+                    <span class="checkbox-label">Free</span>
+                  </label>
+                  <label class="checkbox-item">
+                    <input type="checkbox" v-model="newResource.featured" />
+                    <span class="checkbox-label">Featured</span>
+                  </label>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label for="resourcePricing" class="form-label">Pricing Info</label>
+                <input
+                  type="text"
+                  id="resourcePricing"
+                  v-model="newResource.pricing"
+                  class="form-input"
+                  placeholder="e.g., Free + Paid"
+                />
               </div>
             </div>
-            <div class="resource-actions">
-              <button @click="editResource(resource)" class="btn btn-secondary btn-sm">
-                <i class="fa-solid fa-edit"></i>
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary btn-md" :disabled="submitting">
+                <i v-if="submitting" class="fa-solid fa-spinner fa-spin"></i>
+                <i v-else class="fa-solid fa-plus"></i>
+                {{ submitting ? 'Adding...' : 'Add Resource' }}
               </button>
-              <button @click="deleteResource(resource.id)" class="btn btn-primary btn-sm">
-                <i class="fa-solid fa-trash"></i>
+              <button type="button" @click="resetForm" class="btn btn-tertiary btn-md">
+                <i class="fa-solid fa-undo"></i>
+                Reset Form
               </button>
+            </div>
+          </form>
+
+          <!-- Success/Error Messages -->
+          <div v-if="message" :class="['message', messageType]">
+            <i :class="messageIcon"></i>
+            {{ message }}
+          </div>
+        </div>
+
+        <!-- Recent Resources -->
+        <div class="recent-resources-section">
+          <h2 class="section-title">Recent Resources</h2>
+          <div class="recent-resources">
+            <div v-for="resource in recentResources" :key="resource.id" class="recent-resource-item">
+              <div class="resource-info">
+                <div class="resource-icon">{{ resource.icon }}</div>
+                <div class="resource-details">
+                  <h3 class="resource-name">{{ resource.name }}</h3>
+                  <p class="resource-category">{{ getCategoryName(resource.category) }}</p>
+                  <p class="resource-description">{{ resource.description }}</p>
+                </div>
+              </div>
+              <div class="resource-actions">
+                <button @click="editResource(resource)" class="btn btn-secondary btn-sm">
+                  <i class="fa-solid fa-edit"></i>
+                </button>
+                <button @click="deleteResource(resource.id)" class="btn btn-primary btn-sm">
+                  <i class="fa-solid fa-trash"></i>
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -310,6 +404,7 @@
 
 <script>
 import { resourcesService } from '../services/resourcesService.js';
+import { blogService } from '../services/blogService.js';
 
 export default {
   name: 'Admin',
@@ -346,7 +441,20 @@ export default {
       },
       categoryMessage: '',
       categoryMessageType: 'success',
-      submittingCategory: false
+      submittingCategory: false,
+      adminTab: 'resources',
+      recentBlogs: [],
+      blogForm: {
+        title: '',
+        content: '',
+        author: '',
+        tagsInput: '',
+        imageUrl: ''
+      },
+      editingBlogId: null,
+      blogSubmitting: false,
+      blogMessage: '',
+      blogMessageType: 'success',
     };
   },
   async mounted() {
@@ -355,6 +463,7 @@ export default {
     if (authToken) {
       this.isAuthenticated = true;
       await this.loadData();
+      await this.loadBlogs();
     }
   },
   methods: {
@@ -390,8 +499,18 @@ export default {
         
         this.categories = categoriesData;
         this.recentResources = resourcesData.slice(0, 5); // Show last 5
+        await this.loadBlogs();
       } catch (error) {
         this.showMessage('Failed to load data', 'error');
+      }
+    },
+    
+    async loadBlogs() {
+      try {
+        const blogs = await blogService.getAllBlogs();
+        this.recentBlogs = blogs.slice(0, 5); // Show last 5
+      } catch (error) {
+        this.showBlogMessage('Failed to load blogs', 'error');
       }
     },
     
@@ -548,7 +667,95 @@ export default {
       document.querySelector('.category-form').scrollIntoView({ 
         behavior: 'smooth' 
       });
-    }
+    },
+    async addBlog() {
+      this.blogSubmitting = true;
+      try {
+        const tags = this.blogForm.tagsInput.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0);
+        const blogData = {
+          title: this.blogForm.title,
+          content: this.blogForm.content,
+          author: this.blogForm.author,
+          date: new Date(),
+          tags,
+          imageUrl: this.blogForm.imageUrl || null
+        };
+        await blogService.addBlog(blogData);
+        this.showBlogMessage('Blog added successfully!', 'success');
+        this.resetBlogForm();
+        await this.loadBlogs();
+      } catch (error) {
+        this.showBlogMessage('Failed to add blog: ' + error.message, 'error');
+      } finally {
+        this.blogSubmitting = false;
+      }
+    },
+    async updateBlog() {
+      this.blogSubmitting = true;
+      try {
+        const tags = this.blogForm.tagsInput.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0);
+        const blogData = {
+          title: this.blogForm.title,
+          content: this.blogForm.content,
+          author: this.blogForm.author,
+          tags,
+          imageUrl: this.blogForm.imageUrl || null
+        };
+        await blogService.updateBlog(this.editingBlogId, blogData);
+        this.showBlogMessage('Blog updated successfully!', 'success');
+        this.resetBlogForm();
+        await this.loadBlogs();
+      } catch (error) {
+        this.showBlogMessage('Failed to update blog: ' + error.message, 'error');
+      } finally {
+        this.blogSubmitting = false;
+      }
+    },
+    async deleteBlog(id) {
+      if (confirm('Are you sure you want to delete this blog?')) {
+        try {
+          await blogService.deleteBlog(id);
+          this.showBlogMessage('Blog deleted successfully!', 'success');
+          await this.loadBlogs();
+        } catch (error) {
+          this.showBlogMessage('Failed to delete blog: ' + error.message, 'error');
+        }
+      }
+    },
+    editBlog(blog) {
+      this.blogForm = {
+        title: blog.title,
+        content: blog.content,
+        author: blog.author,
+        tagsInput: blog.tags ? blog.tags.join(', ') : '',
+        imageUrl: blog.imageUrl || ''
+      };
+      this.editingBlogId = blog.id;
+      document.querySelector('.blog-form').scrollIntoView({ behavior: 'smooth' });
+    },
+    resetBlogForm() {
+      this.blogForm = {
+        title: '',
+        content: '',
+        author: '',
+        tagsInput: '',
+        imageUrl: ''
+      };
+      this.editingBlogId = null;
+      this.blogMessage = '';
+    },
+    showBlogMessage(text, type = 'success') {
+      this.blogMessage = text;
+      this.blogMessageType = type;
+      setTimeout(() => {
+        this.blogMessage = '';
+      }, 5000);
+    },
+    formatDate(date) {
+      if (!date) return '';
+      const d = date.seconds ? new Date(date.seconds * 1000) : new Date(date);
+      return d.toLocaleDateString() + ' ' + d.toLocaleTimeString();
+    },
   },
   computed: {
     messageIcon() {
@@ -560,7 +767,12 @@ export default {
       return this.categoryMessageType === 'success' 
         ? 'fa-solid fa-check-circle' 
         : 'fa-solid fa-exclamation-triangle';
-    }
+    },
+    blogMessageIcon() {
+      return this.blogMessageType === 'success' 
+        ? 'fa-solid fa-check-circle' 
+        : 'fa-solid fa-exclamation-triangle';
+    },
   }
 };
 </script>
@@ -1124,5 +1336,121 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+}
+
+/* Selection Tabs */
+.admin-tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.tab-btn {
+  background: none;
+  border: none;
+  font-family: var(--font-family-pixel);
+  font-size: 1rem;
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  transition: all var(--transition-duration) ease;
+  color: var(--primary-color);
+}
+
+.tab-btn.active {
+  border-bottom: 0.2rem solid var(--primary-color);
+}
+
+/* Blog Management Section */
+.blog-form-section {
+  background: rgba(255, 255, 255, 0.05);
+  border: 0.125rem solid var(--primary-color);
+  border-radius: 0;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  backdrop-filter: blur(0.5rem);
+}
+
+.blog-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.blog-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.blog-details {
+  flex: 1;
+}
+
+.blog-title {
+  font-family: var(--font-family-pixel);
+  font-size: 1rem;
+  color: var(--primary-color);
+  margin: 0 0 0.25rem 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+}
+
+.blog-meta {
+  font-family: var(--font-family-pixel);
+  font-size: 0.7rem;
+  color: var(--secondary-color);
+  margin: 0 0 0.25rem 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+}
+
+.blog-tags {
+  font-family: var(--font-family-pixel);
+  font-size: 0.7rem;
+  color: var(--secondary-color);
+  margin: 0 0 0.25rem 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+}
+
+.blog-content-preview {
+  font-size: 0.8rem;
+  color: var(--text-color);
+  margin: 0;
+  opacity: 0.8;
+  line-height: 1.4;
+}
+
+.blog-image-preview {
+  flex: 1;
+  text-align: right;
+}
+
+.blog-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* Recent Blogs */
+.recent-blogs {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.recent-blog-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 0.125rem solid rgba(245, 245, 220, 0.2);
+  border-radius: 0;
+  transition: all var(--transition-duration) ease;
+}
+
+.recent-blog-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--primary-color);
 }
 </style> 
