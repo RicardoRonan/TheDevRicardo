@@ -21,8 +21,7 @@
           <!-- Contact Form -->
           <div class="col-lg-6 col-md-12">
             <div class="contact-form-container">
-              <!-- <form action="https://formspree.io/f/mnqwedov" method="POST" class="contact-form"> -->
-                <form action="http://localhost:5678/form/b4c505c2-e8ba-41d8-bcfa-b913ad36fc6f" method="POST" class="contact-form">
+              <form action="https://formspree.io/f/mnqwedov" method="POST" class="contact-form">
                 <div class="form-header">
                   <h3 class="form-title">Send Message</h3>
                   <div class="form-subtitle">Fill out the form below and I'll get back to you soon!</div>
