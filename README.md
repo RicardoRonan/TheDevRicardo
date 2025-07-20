@@ -1,162 +1,248 @@
-# vue-portfolio
+# Mapple TV - Vue.js Streaming Application
 
-A modern, professional Vue.js portfolio with pixel art aesthetics, advanced responsive design, and automation/fintech focus.
+A complete Vue.js streaming platform inspired by Mapple TV, built with modern web technologies and featuring a Netflix-like interface for movies and TV shows.
 
----
+## 🎬 Features
 
-## 🚀 Project Setup
+### Core Functionality
+- **🎥 Video Player**: Custom HTML5 video player with full controls
+- **📱 Responsive Design**: Mobile-first approach with Tailwind CSS
+- **🔍 Search & Discovery**: Real-time search with filtering options
+- **📺 Media Library**: Browse movies and TV shows with pagination
+- **⭐ User Collections**: Favorites and Watch Later lists
+- **📊 Watch Progress**: Automatic progress tracking and resume functionality
+- **🎨 Theme Support**: Multiple color themes (Default, Green, Blue, Purple)
 
-```bash
-npm install
+### Video Player Features
+- ▶️ Play/Pause with spacebar support
+- 🔊 Volume control with mute option
+- ⏭️ Seek functionality with click and drag
+- 📱 Fullscreen support
+- ⌨️ Keyboard shortcuts (F for fullscreen, M for mute, arrows for seeking)
+- 🎬 Skip intro/outro buttons
+- 📹 Auto-next episode for TV shows
+- 📊 Buffer progress visualization
+- 🎛️ Playback speed control
+- 📑 Subtitle support (UI ready)
+
+### TV Show Features
+- 📋 Episode selection interface
+- 🔄 Auto-next episode with countdown
+- 📈 Progress tracking per episode
+- 🎯 Season and episode navigation
+
+### User Experience
+- 💾 LocalStorage persistence for user data
+- 📊 Watch statistics and analytics
+- 🎨 Theme customization
+- 📱 Touch-friendly mobile interface
+- ♿ Accessibility support (ARIA labels, keyboard navigation)
+- 🌐 SEO optimized
+
+## 🛠️ Technology Stack
+
+- **Frontend**: Vue 3 with Composition API
+- **Language**: TypeScript for type safety
+- **Styling**: Tailwind CSS with custom components
+- **State Management**: Pinia stores
+- **Routing**: Vue Router with navigation guards
+- **Build Tool**: Vite for fast development
+- **Icons**: Heroicons via SVG
+
+## 📁 Project Structure
+
+```
+src/
+├── components/           # Reusable Vue components
+│   ├── VideoPlayer.vue  # Main video player component
+│   ├── MediaCard.vue    # Movie/TV show cards
+│   ├── MediaGrid.vue    # Grid layout for media items
+│   └── AppHeader.vue    # Navigation header
+├── views/               # Page components
+│   ├── HomeView.vue     # Homepage with featured content
+│   ├── PlayerView.vue   # Video player page
+│   ├── MoviesView.vue   # Movies library
+│   ├── TVShowsView.vue  # TV shows library
+│   ├── SearchView.vue   # Search and filter interface
+│   ├── FavoritesView.vue     # User favorites
+│   ├── WatchLaterView.vue    # Watch later list
+│   └── NotFoundView.vue      # 404 page
+├── stores/              # Pinia state management
+│   ├── media.ts         # Media data and API calls
+│   ├── player.ts        # Video player state
+│   └── user.ts          # User preferences and history
+├── services/            # API services
+│   └── api.ts           # Mock API with TMDB-style data
+├── types/               # TypeScript definitions
+│   └── index.ts         # Interface definitions
+└── router/              # Vue Router configuration
+    └── index.ts         # Route definitions
 ```
 
-### Compiles and hot-reloads for development
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js 16+ and npm
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd mapple-tv-clone
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Start the development server**
+   ```bash
+   npm run dev
+   ```
+
+4. **Open your browser**
+   Navigate to `http://localhost:3000`
+
+### Available Scripts
+
 ```bash
-npm run serve
+npm run dev          # Start development server
+npm run build        # Build for production
+npm run preview      # Preview production build
+npm run type-check   # TypeScript type checking
 ```
 
-### Compiles and minifies for production
-```bash
-npm run build
+## 🎮 Usage
+
+### Navigation
+- **Home**: Featured content and trending media
+- **Movies**: Browse movie collection
+- **TV Shows**: Browse TV series
+- **Search**: Find specific content with filters
+- **Favorites**: Your starred content
+- **Watch Later**: Saved items for later viewing
+
+### Video Player Controls
+- **Space**: Play/Pause
+- **F**: Toggle fullscreen
+- **M**: Mute/Unmute
+- **↑/↓**: Volume control
+- **←/→**: Seek backward/forward
+- **Esc**: Exit fullscreen or close dialogs
+
+### Theme Switching
+1. Click the theme icon in the header
+2. Select from Default, Green, Blue, or Purple themes
+3. Theme preference is automatically saved
+
+## 🎨 Customization
+
+### Adding New Themes
+1. Update the theme configuration in `src/components/AppHeader.vue`
+2. Add corresponding CSS variables in `tailwind.config.js`
+3. Include theme styles in component CSS
+
+### Mock Data
+The application uses mock data that simulates the Mapple TV API structure. Real data can be integrated by updating the `src/services/api.ts` file.
+
+### Video Sources
+Current implementation uses sample videos from Google's test video collection. Replace with your video sources in the API service.
+
+## 📊 State Management
+
+### Media Store (`stores/media.ts`)
+- Trending movies and TV shows
+- Featured content
+- Search results and filters
+- Genre information
+
+### Player Store (`stores/player.ts`)
+- Video player state and controls
+- Progress tracking
+- Event logging
+- Auto-next functionality
+
+### User Store (`stores/user.ts`)
+- Watch history and progress
+- Favorites and watch later lists
+- User preferences and settings
+- Data export/import functionality
+
+## 🔧 Configuration
+
+### Environment Variables
+Create a `.env` file in the root directory:
+```env
+VITE_API_BASE_URL=https://your-api-endpoint.com
+VITE_TMDB_API_KEY=your-tmdb-api-key
+VITE_APP_NAME=Mapple TV
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Tailwind Configuration
+Customize colors, animations, and responsive breakpoints in `tailwind.config.js`.
+
+## 📱 Progressive Web App (PWA)
+
+The application is PWA-ready with:
+- Service worker support (can be added)
+- Manifest file configuration
+- Offline functionality (can be implemented)
+- App installation capability
+
+## ♿ Accessibility
+
+- ARIA labels for screen readers
+- Keyboard navigation support
+- High contrast mode support
+- Reduced motion preferences
+- Focus management
+
+## 🌐 Browser Support
+
+- Chrome 90+
+- Firefox 88+
+- Safari 14+
+- Edge 90+
+
+## 📈 Performance
+
+- Lazy loading for images and components
+- Virtual scrolling for large lists
+- Code splitting by routes
+- Optimized bundle size with Vite
+- Responsive image loading
+
+## 🐛 Known Issues
+
+- TypeScript strict mode may show warnings in development
+- Some mock API responses are simplified
+- Video player controls may need fine-tuning on mobile
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- Inspired by [Mapple TV](https://mappletv.uk)
+- Icons by [Heroicons](https://heroicons.com)
+- Fonts by [Google Fonts](https://fonts.google.com)
+- Sample videos by [Google](https://commondatastorage.googleapis.com/gtv-videos-bucket/)
+
+## 📞 Support
+
+For support or questions, please open an issue in the GitHub repository.
 
 ---
 
-# 📋 Portfolio Information & Content Updates
-
-## Professional Title & Summary
-- **Title:** Full-Stack Developer & Automation Specialist
-- **Summary:** Dedicated Full-Stack Developer with hands-on experience in fintech systems, automation, and scalable web apps. Proven track record of building secure payment integrations, automating business workflows using n8n, and collaborating on full lifecycle development projects. Passionate about digital financial transformation and continuous learning.
-
-## Contact & Education
-- **LinkedIn:** [ricardo-moses1](https://www.linkedin.com/in/ricardo-moses1/)
-- **Education:** Life Choices Academy, Web Development Bootcamp (Apr 2022 - Sep 2022)
-
-## Skills & Experience
-- **Skills:** HTML5, CSS3, JavaScript, Vue.js, Node.js, SQL, C#/.NET, Bootstrap, GitHub, Automation, Fintech, SEO
-- **Experience:**
-  - Automation Specialist at B2b-ai (May 2025 – Present)
-  - Software Developer at Payment24 (Mar 2023 – May 2025)
-  - SEO Intern at Grizzly New Marketing (Sep 2022 – Dec 2022)
-
-## Projects
-- **Vue.js Portfolio** (Featured) – [Live Demo](https://vue-portfolio-c077e.web.app/)
-- BMI Calculator, Task Management App, Temperature Converter, Property Listing Platform, Digital Art Gallery
-
----
-
-# 🛠️ Major Technical & Design Updates
-
-## Bootstrap Modernization
-- Upgraded Bootstrap from 5.1.3 to 5.3.3
-- Modernized import methods for better performance and tree-shaking
-- Enhanced grid system and responsive breakpoints
-- Adopted Bootstrap's gutter system for consistent spacing
-- Improved accessibility with semantic HTML and screen reader labels
-
-## CSS & Accessibility Improvements
-- Converted all px units to rem for scalability
-- Implemented CSS custom properties for colors, spacing, and shadows
-- Created a comprehensive utility classes system (`src/assets/css/utilities.css`)
-- Improved color consistency and transitions
-- Added accessibility features: focus states, prefers-reduced-motion, better contrast
-- Modular, maintainable CSS structure
-
-## Home & Landing Page Redesign
-- Fully restructured Landing and Home components for clarity and responsiveness
-- Centralized and animated loading bar with real-time percentage
-- Staggered entry and floating character animations
-- Mobile-first layout with optimized touch targets and typography
-- Enhanced accessibility: semantic HTML, alt text, keyboard navigation
-
-## Portfolio Content & Structure
-- Updated all sections to reflect current professional status and skills
-- Added new Experience component with detailed roles and timeline
-- Reorganized projects, skills, and education for clarity
-- Consistent pixel art theme and color scheme
-
----
-
-# 🎨 Design & UX Highlights
-
-- **Responsive Design:** Mobile-first, granular breakpoints, consistent spacing
-- **Accessibility:** Screen reader support, keyboard navigation, high contrast, reduced motion
-- **Performance:** Optimized bundle size, efficient animations, lazy loading
-- **Professional Aesthetic:** Modern gradients, pixel fonts, subtle textures, engaging animations
-- **Maintainability:** Modular components, utility classes, centralized theme variables
-
----
-
-# 📁 Key Files & Components
-
-- `src/components/Landing.vue` – Professional intro, animated loading bar
-- `src/components/Aboutcard.vue` – About & summary
-- `src/components/resumeCard.vue` – Education & profile
-- `src/components/skills.vue` – Skills grid
-- `src/components/Experience.vue` – Work experience
-- `src/components/Footer.vue` – Contact info
-- `src/views/Home.vue` – Main page structure
-- `src/assets/css/utilities.css` – Utility classes
-
----
-
-# 🔧 Best Practices & Recommendations
-
-- Use rem units for all measurements (except 1px borders)
-- Always use CSS custom properties for colors and spacing
-- Import and use utility classes for rapid styling
-- Test accessibility with screen readers and keyboard navigation
-- Validate responsive design on all device sizes
-- Keep project dependencies up to date
-
----
-
-# 📝 Next Steps & Future Enhancements
-
-1. Update project screenshots and add case studies
-2. Add certifications and a blog section
-3. Enhance contact form with automation examples
-4. Implement CSS linting and design system documentation
-5. Explore advanced interactions (scroll animations, micro-interactions)
-6. Optimize images and bundle loading
-
----
-
-# 📊 Before vs After: Key Improvements
-
-| Aspect         | Before                        | After (Current)                |
-|----------------|-------------------------------|-------------------------------|
-| Bootstrap      | 5.1.3, basic grid             | 5.3.3, advanced grid/gutters  |
-| CSS Units      | px                            | rem, custom properties        |
-| Accessibility  | Limited                       | Full WCAG compliance          |
-| Mobile Layout  | Poor                          | Mobile-first, touch-friendly  |
-| Loading Bar    | Static, non-functional        | Animated, interactive         |
-| Experience     | Not included                  | Detailed, timeline-based      |
-| Skills         | Basic, 8 items                | 12+ skills, icons, categories |
-| Projects       | Unorganized                   | Featured, reorganized         |
-| Performance    | Unoptimized                   | Optimized, lazy loading       |
-| Maintainability| Scattered, hardcoded values   | Modular, utility classes      |
-
----
-
-# 🔍 Testing & Validation
-
-- Test on all major browsers (Chrome, Firefox, Safari, Edge)
-- Test on various screen sizes and zoom levels
-- Validate accessibility (screen readers, keyboard, contrast)
-- Measure bundle size and loading times
-- Test with reduced motion and high contrast settings
-
----
-
-# 📚 Documentation History
-
-- **BOOTSTRAP_UPDATES_SUMMARY.md:** Bootstrap modernization details
-- **CSS_IMPROVEMENTS_SUMMARY.md:** CSS and accessibility improvements
-- **HOME_LANDING_FIXES_SUMMARY.md:** Home/Landing UX and layout fixes
-- **PORTFOLIO_UPDATES_SUMMARY.md:** Portfolio content and structure updates
-
-All documentation is now consolidated here. Keep this README up to date as you make further improvements!
+**Built with ❤️ using Vue.js and modern web technologies**

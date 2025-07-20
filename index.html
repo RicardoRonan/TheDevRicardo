@@ -1,28 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-    <link rel="icon" href="/favicon.ico" />
-    <title>The Meta Stack - Portfolio</title>
-    <link
-      href="https://unpkg.com/nes.css@latest/css/nes.min.css"
-      rel="stylesheet"
-    />
-    <script
-      src="https://kit.fontawesome.com/53a149f81a.js"
-      crossorigin="anonymous"
-    ></script>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mapple TV - Stream Movies & TV Shows</title>
+    <meta name="author" content="Mapple TV" />
+    <meta name="description" content="Stream your favorite movies and TV shows in stunning 4K quality. Discover new content and enjoy unlimited entertainment." />
+    <meta name="keywords" content="streaming, movies, tv shows, 4K, entertainment, watch online" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://mappletv.example.com/" />
+    <meta property="og:title" content="Mapple TV - Stream Movies & TV Shows" />
+    <meta property="og:description" content="Stream your favorite movies and TV shows in stunning 4K quality." />
+    <meta property="og:image" content="/og-image.jpg" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://mappletv.example.com/" />
+    <meta property="twitter:title" content="Mapple TV - Stream Movies & TV Shows" />
+    <meta property="twitter:description" content="Stream your favorite movies and TV shows in stunning 4K quality." />
+    <meta property="twitter:image" content="/og-image.jpg" />
+
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#dc2626" />
+    
+    <!-- Preconnect to improve performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+      /* Initial loading styles */
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        background-color: #111827;
+        color: #ffffff;
+      }
+      
+      .app-loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #111827;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+      }
+      
+      .loader-content {
+        text-align: center;
+      }
+      
+      .loader-spinner {
+        width: 50px;
+        height: 50px;
+        border: 3px solid #374151;
+        border-top: 3px solid #dc2626;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin: 0 auto 20px;
+      }
+      
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      
+      .loader-text {
+        color: #ffffff;
+        font-size: 18px;
+        font-weight: 600;
+      }
+      
+      .loader-brand {
+        color: #dc2626;
+        font-size: 24px;
+        font-weight: 800;
+        margin-bottom: 10px;
+      }
+    </style>
   </head>
   <body>
     <noscript>
       <strong>
-        We're sorry but The Meta Stack - Portfolio doesn't work
-        properly without JavaScript enabled. Please enable it to
-        continue.</strong>
+        We're sorry but Mapple TV doesn't work properly without JavaScript enabled. 
+        Please enable it to continue.
+      </strong>
     </noscript>
-    <div id="app"></div>
+    <div id="app">
+      <!-- Loading screen shown until Vue app loads -->
+      <div class="app-loader">
+        <div class="loader-content">
+          <div class="loader-brand">Mapple TV</div>
+          <div class="loader-spinner"></div>
+          <div class="loader-text">Loading your entertainment...</div>
+        </div>
+      </div>
+    </div>
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
