@@ -91,6 +91,7 @@ export default {
   text-align: center;
   margin-bottom: 2rem;
   color: var(--secondary-color);
+  animation: fadeIn var(--animation-duration-subtle) var(--animation-ease);
 }
 
 .experience-item {
@@ -99,7 +100,7 @@ export default {
   border-radius: var(--border-radius);
   padding: 2rem;
   margin-bottom: 2rem;
-  transition: transform var(--transition-duration) ease;
+  transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 .experience-item:hover {

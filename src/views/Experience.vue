@@ -214,7 +214,6 @@ export default {
 /* Hero Section */
 .hero-section {
   padding: 4rem 0 2rem 0;
-  background: linear-gradient(135deg, rgba(220, 20, 60, 0.1), rgba(245, 245, 220, 0.1));
   border-bottom: 0.125rem solid var(--primary-color);
   position: relative;
   z-index: 2;
@@ -226,7 +225,7 @@ export default {
   color: var(--primary-color);
   text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.8);
   margin-bottom: 1rem;
-  animation: slideInDown var(--animation-duration-subtle) ease-out;
+  animation: slideInDown var(--animation-duration-subtle) var(--animation-ease);
 }
 
 .hero-subtitle {
@@ -234,7 +233,7 @@ export default {
   color: var(--secondary-color);
   max-width: 600px;
   margin: 0 auto;
-  animation: slideInUp var(--animation-duration-subtle) ease-out var(--animation-delay-small) both;
+  animation: slideInUp var(--animation-duration-subtle) var(--animation-ease) var(--animation-delay-small) both;
 }
 
 /* Experience Content */
@@ -250,7 +249,7 @@ export default {
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem 1rem;
-  animation: slideInLeft var(--animation-duration-subtle) ease-out both;
+  animation: slideInLeft var(--animation-duration-subtle) var(--animation-ease) both;
 }
 
 .experience-timeline::before {
@@ -267,7 +266,7 @@ export default {
 .timeline-item {
   position: relative;
   margin-bottom: 3rem;
-  animation: slideInLeft var(--animation-duration-subtle) ease-out both;
+  animation: slideInLeft var(--animation-duration-subtle) var(--animation-ease) both;
 }
 
 .timeline-item:nth-child(1) { animation-delay: var(--animation-delay-large); }
@@ -305,7 +304,7 @@ export default {
 
 .timeline-content {
   margin-left: 5rem;
-  animation: slideInUp var(--animation-duration-subtle) ease-out var(--animation-delay-small) both;
+  animation: slideInUp var(--animation-duration-subtle) var(--animation-ease) var(--animation-delay-small) both;
 }
 
 /* Experience Cards */
@@ -496,7 +495,7 @@ export default {
   position: relative;
   z-index: 2;
   padding: 3rem 1rem 0;
-  animation: slideInUp var(--animation-duration-subtle) ease-out var(--animation-delay-small) both;
+  animation: slideInUp var(--animation-duration-subtle) var(--animation-ease) var(--animation-delay-small) both;
 }
 
 .achievements-title {

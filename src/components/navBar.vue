@@ -178,7 +178,7 @@ export default {
   border-radius: 0;
   padding: 0.75rem;
   cursor: pointer;
-  transition: all var(--transition-duration) ease;
+  transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
   backdrop-filter: blur(0.5rem);
 }
 
@@ -200,7 +200,7 @@ export default {
   width: 100%;
   height: 0.125rem;
   background: var(--secondary-color);
-  transition: all var(--transition-duration) ease;
+  transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 .menu-toggle:hover .menu-line {
@@ -217,7 +217,7 @@ export default {
   z-index: 999;
   opacity: 0;
   visibility: hidden;
-  transition: all var(--transition-duration) ease;
+  transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 .nav-overlay.active {
@@ -263,7 +263,7 @@ align-items: center;
   color: var(--secondary-color);
   font-size: 1.5rem;
   cursor: pointer;
-  transition: all var(--transition-duration) ease;
+  transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 .nav-close:hover {
@@ -284,12 +284,14 @@ align-items: center;
   height: 100vh;
   padding: 2rem;
   text-align: center;
+  padding-top: 13rem;
+  overflow-y: auto;
 }
 
 /* Logo Section */
 .nav-logo {
   margin-bottom: 3rem;
-  animation: slideInUp var(--animation-duration-subtle) ease-out var(--animation-delay-small) both;
+  animation: slideInUp var(--animation-duration-subtle) var(--animation-ease) var(--animation-delay-small) both;
 }
 
 .logo-link {
@@ -297,7 +299,7 @@ align-items: center;
   flex-direction: column;
   align-items: center;
   text-decoration: none;
-  transition: all var(--transition-duration) ease;
+  transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 .logo-link:hover {
@@ -311,7 +313,7 @@ align-items: center;
   border-radius: 0;
   margin-bottom: 1rem;
   filter: drop-shadow(0.25rem 0.25rem 0.5rem rgba(0, 0, 0, 0.5));
-  transition: all var(--transition-duration) ease;
+  transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 .logo-link:hover .logo-image {
@@ -332,7 +334,7 @@ align-items: center;
   flex-direction: column;
   gap: 1.5rem;
   margin-bottom: 3rem;
-  animation: slideInUp var(--animation-duration-subtle) ease-out both;
+  animation: slideInUp var(--animation-duration-subtle) var(--animation-ease) both;
 }
 
 .nav-item {
@@ -347,10 +349,10 @@ align-items: center;
   background: rgba(255, 255, 255, 0.05);
   border: 0.125rem solid transparent;
   border-radius: 0;
-  transition: all var(--transition-duration) ease;
+  transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
   min-width: 12rem;
   backdrop-filter: blur(0.25rem);
-  animation: slideInLeft var(--animation-duration-subtle) ease-out both;
+  animation: slideInLeft var(--animation-duration-subtle) var(--animation-ease) both;
 }
 
 .nav-item:nth-child(1) { animation-delay: var(--animation-delay-medium); }
@@ -389,7 +391,7 @@ align-items: center;
 .nav-social {
   display: flex;
   gap: 1.5rem;
-  animation: slideInUp var(--animation-duration-subtle) ease-out 0.9s both;
+  animation: slideInUp var(--animation-duration-subtle) var(--animation-ease) 0.36s both;
 }
 
 .social-link {
@@ -404,7 +406,7 @@ align-items: center;
   color: var(--secondary-color);
   font-size: 1.5rem;
   text-decoration: none;
-  transition: all var(--transition-duration) ease;
+  transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
   backdrop-filter: blur(0.25rem);
 }
 
@@ -560,7 +562,7 @@ align-items: center;
   font-size: 0.9rem;
   text-transform: uppercase;
   letter-spacing: 0.05rem;
-  transition: all var(--transition-duration) ease;
+  transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
   padding: 0.5rem 1rem;
   border: 0.125rem solid transparent;
   border-radius: 0;

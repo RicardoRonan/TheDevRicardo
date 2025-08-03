@@ -9,7 +9,7 @@
 
       <!-- About Content -->
       <div class="about-content">
-        <div class="row g-4 align-items-center">
+        <div class="row g-4">
           <!-- Character Image -->
           <div class="col-lg-5 col-md-12">
             <div class="character-container">
@@ -64,54 +64,44 @@
                   are both beautiful and functional.
                 </p>
               </div>
-
-              <!-- Skills Grid -->
-              <div class="skills-preview">
-                <h3 class="skills-title">Core Skills</h3>
-                <div class="skills-grid">
-                  <div class="skill-item">
-                    <i class="fa-brands fa-js skill-icon"></i>
-                    <span class="skill-name">JavaScript</span>
-                  </div>
-                  <div class="skill-item">
-                    <i class="fa-brands fa-vuejs skill-icon"></i>
-                    <span class="skill-name">Vue.js</span>
-                  </div>
-                  <div class="skill-item">
-                    <i class="fa-solid fa-palette skill-icon"></i>
-                    <span class="skill-name">Design</span>
-                  </div>
-                  <div class="skill-item">
-                    <i class="fa-solid fa-draw-polygon skill-icon"></i>
-                    <span class="skill-name">Illustration</span>
-                  </div>
-                  <div class="skill-item">
-                    <i class="fa-solid fa-cogs skill-icon"></i>
-                    <span class="skill-name">Automation</span>
-                  </div>
-                  <div class="skill-item">
-                    <i class="fa-solid fa-credit-card skill-icon"></i>
-                    <span class="skill-name">Fintech</span>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Call to Action -->
-              <div class="about-cta">
-                <router-link to="/projects" class="btn btn-primary cta-btn">
-                  <i class="fa-solid fa-code"></i>
-                  View My Work
-                </router-link>
-                <router-link to="/contact" class="btn btn-outline-light cta-btn">
-                  <i class="fa-solid fa-envelope"></i>
-                  Get In Touch
-                </router-link>
-              </div>
             </div>
           </div>
         </div>
       </div>
 
+         <!-- Skills Grid -->
+         <div class="skills-preview">
+  <h3 class="skills-title">Core Skills</h3>
+  <div class="skills-grid row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
+    <div class="skill-item col">
+      <i class="fa-brands fa-js skill-icon"></i>
+      <span class="skill-name">JavaScript</span>
+    </div>
+    <div class="skill-item col">
+      <i class="fa-brands fa-vuejs skill-icon"></i>
+      <span class="skill-name">Vue.js</span>
+    </div>
+    <div class="skill-item col">
+      <i class="fa-solid fa-palette skill-icon"></i>
+      <span class="skill-name">Design</span>
+    </div>
+    <div class="skill-item col">
+      <i class="fa-solid fa-draw-polygon skill-icon"></i>
+      <span class="skill-name">Illustration</span>
+    </div>
+    <div class="skill-item col">
+      <i class="fa-solid fa-cogs skill-icon"></i>
+      <span class="skill-name">Automation</span>
+    </div>
+    <div class="skill-item col">
+      <i class="fa-solid fa-credit-card skill-icon"></i>
+      <span class="skill-name">Fintech</span>
+    </div>
+  </div>
+</div>
+
+
+   
       <!-- Fun Facts Section -->
       <div class="fun-facts-section">
         <h3 class="fun-facts-title">Fun Facts About Me</h3>
@@ -176,7 +166,7 @@ export default {};
 .about-header {
   position: relative;
   z-index: 2;
-  animation: slideInUp var(--animation-duration-subtle) ease-out var(--animation-delay-small) both;
+  animation: slideInUp var(--animation-duration-subtle) var(--animation-ease) var(--animation-delay-small) both;
 }
 
 .about-title {
@@ -212,14 +202,14 @@ export default {};
   position: relative;
   z-index: 2;
   padding: 2rem 1rem;
-  animation: slideInUp var(--animation-duration-subtle) ease-out var(--animation-delay-medium) both;
+  animation: slideInUp var(--animation-duration-subtle) var(--animation-ease) var(--animation-delay-medium) both;
 }
 
 /* Character Container */
 .character-container {
   position: relative;
   text-align: center;
-  animation: slideInLeft var(--animation-duration-subtle) ease-out var(--animation-delay-medium) both;
+  animation: slideInLeft var(--animation-duration-subtle) var(--animation-ease) var(--animation-delay-medium) both;
 }
 
 .character-frame {
@@ -282,7 +272,7 @@ export default {};
 
 /* About Text Container */
 .about-text-container {
-  animation: slideInRight var(--animation-duration-subtle) ease-out var(--animation-delay-medium) both;
+  animation: slideInRight var(--animation-duration-subtle) var(--animation-ease) var(--animation-delay-medium) both;
 }
 
 .about-description {
@@ -329,7 +319,7 @@ export default {};
   flex-wrap: wrap;
   gap: 1rem;
   justify-content: center;
-  animation: slideInUp var(--animation-duration-subtle) ease-out var(--animation-delay-large) both;
+  animation: slideInUp var(--animation-duration-subtle) var(--animation-ease) var(--animation-delay-large) both;
 }
 
 .skill-item {
@@ -366,7 +356,7 @@ export default {};
 
 .skill-name {
   font-family: var(--font-family-pixel);
-  font-size: 0.7rem;
+  font-size: 0.5rem;
   color: var(--text-color);
   text-transform: uppercase;
   letter-spacing: 0.05rem;
@@ -432,7 +422,7 @@ export default {};
   position: relative;
   z-index: 2;
   padding: 3rem 1rem 0;
-  animation: slideInUp var(--animation-duration-subtle) ease-out var(--animation-delay-medium) both;
+  animation: slideInUp var(--animation-duration-subtle) var(--animation-ease) var(--animation-delay-medium) both;
 }
 
 .fun-facts-title {
@@ -571,6 +561,8 @@ export default {};
     padding: 0.75rem;
     max-width: 100%;
     min-width: auto;
+    display: flex;
+    justify-content: center;
   }
   
   .skill-icon {

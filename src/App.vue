@@ -1,7 +1,12 @@
 <template>
-  <router-view />
-  <navBar />
-  <Footer />
+  <div>
+    <div v-if="showLoader" class="global-loader-overlay">
+      <img src="./assets/loading-animation.gif" alt="Loading..." class="global-loader-gif" />
+    </div>
+    <router-view v-else />
+    <navBar v-if="!showLoader" />
+    <Footer v-if="!showLoader" />
+  </div>
 </template>
 
 <script>
@@ -11,6 +16,30 @@ export default {
   components: {
     navBar,
     Footer,
+  },
+  props: {
+    loading: {
+      type: Boolean,
+      default: true
+    }
+  },
+  data() {
+    return {
+      showLoader: this.loading,
+    };
+  },
+  watch: {
+    loading(val) {
+      this.showLoader = val;
+    }
+  },
+  mounted() {
+    // Expose a method for global loader control
+    if (this.$root) {
+      this.$root.setLoader = (val) => {
+        this.showLoader = val;
+      };
+    }
   },
 };
 </script>
@@ -26,13 +55,20 @@ export default {
   --font-family-pixel: pixel;
   
   /* Animation Durations */
-  --transition-duration: 0.2s;
-  --animation-duration-subtle: 0.4s;
-  --animation-duration-slow: 0.8s;
-  
+  --transition-duration: 0.4s; /* 400ms, smooth */
+  --animation-duration-subtle: 0.4s; /* 400ms */
+  --animation-duration-slow: 0.5s; /* 500ms */
+  --animation-duration-floating: 0.5s; /* 500ms for floating effects */
+
   /* Animation Delays */
-  --animation-delay-small: 0.1s;
-  --animation-delay-medium: 0.2s;
+  --animation-delay-small: 0.08s; /* 80ms for subtle stagger */
+  --animation-delay-medium: 0.16s; /* 160ms for staggered sequencing */
+  --animation-delay-large: 0.24s;
+  --animation-delay-larger: 0.32s;
+  --animation-delay-largest: 0.4s;
+
+  /* Animation Easing */
+  --animation-ease: cubic-bezier(0.25, 0.1, 0.25, 1);
   
   /* Box Shadows */
   --box-shadow-light: 0.125rem 0.125rem 0.25rem var(--shadow-color);
@@ -88,5 +124,30 @@ export default {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+.global-loader-overlay {
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: var(--background-color, #000); /* Removed gradient */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+.global-loader-gif {
+  width: 220px; /* Increased size */
+  height: 220px; /* Increased size */
+  object-fit: contain;
+  image-rendering: pixelated;
+  animation: loader-bounce 1.2s infinite cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+@keyframes loader-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-1.5rem); }
 }
 </style>

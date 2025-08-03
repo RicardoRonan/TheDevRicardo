@@ -44,7 +44,7 @@ export default {
 
 /* Add subtle fade-in animation for content sections */
 .content-sections > *:nth-child(1) {
-  animation: fadeInUp var(--animation-duration-subtle) ease-out var(--animation-delay-small) both;
+  animation: fadeInUp var(--animation-duration-subtle) var(--animation-ease) var(--animation-delay-small) both;
 }
 
 @keyframes fadeInUp {

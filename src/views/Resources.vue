@@ -349,7 +349,6 @@ export default {
 /* Hero Section */
 .hero-section {
   padding: 4rem 0 2rem 0;
-  background: linear-gradient(135deg, rgba(220, 20, 60, 0.1), rgba(245, 245, 220, 0.1));
   border-bottom: 0.125rem solid var(--primary-color);
 }
 
@@ -454,7 +453,7 @@ export default {
 /* Letter Sections */
 .letter-section {
   margin-bottom: 3rem;
-  animation: fadeIn var(--animation-duration-subtle) ease-out;
+  animation: fadeIn var(--animation-duration-subtle) var(--animation-ease);
 }
 
 .letter-title {
@@ -486,11 +485,11 @@ export default {
   border-radius: 0;
   padding: 1.5rem;
   height: 100%;
-  transition: all var(--transition-duration) ease;
+  transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
   backdrop-filter: blur(0.5rem);
   position: relative;
   overflow: hidden;
-  animation: fadeIn var(--animation-duration-subtle) ease-out var(--animation-delay-small) both;
+  animation: fadeIn var(--animation-duration-subtle) var(--animation-ease) var(--animation-delay-small) both;
 }
 
 .resource-card:hover {
@@ -761,8 +760,6 @@ export default {
 }
 
 .featured-resource-card {
-  background: rgba(255, 255, 255, 0.05);
-  border: 0.125rem solid var(--primary-color);
   border-radius: 0;
   padding: 2rem;
   text-align: center;
@@ -771,13 +768,6 @@ export default {
   overflow: hidden;
   backdrop-filter: blur(0.5rem);
   animation: fadeIn var(--animation-duration-subtle) ease-out 1.5s both;
-}
-
-.featured-resource-card:hover {
-  transform: translateY(-0.25rem);
-  background: rgba(255, 255, 255, 0.1);
-  border-color: var(--secondary-color);
-  box-shadow: 0 0.5rem 1rem rgba(220, 20, 60, 0.3);
 }
 
 .featured-header {
@@ -874,7 +864,7 @@ export default {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  transition: all var(--transition-duration) ease;
+  transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 .featured-actions .btn-lg:hover {

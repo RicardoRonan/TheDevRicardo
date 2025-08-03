@@ -154,7 +154,6 @@ export default {};
 /* Hero Section */
 .hero-section {
   padding: 4rem 0 2rem 0;
-  background: linear-gradient(135deg, rgba(220, 20, 60, 0.1), rgba(245, 245, 220, 0.1));
   border-bottom: 0.125rem solid var(--primary-color);
   position: relative;
   z-index: 2;
@@ -193,7 +192,7 @@ export default {};
   backdrop-filter: blur(0.5rem);
   position: relative;
   overflow: hidden;
-  animation: slideInRight var(--animation-duration-subtle) ease-out var(--animation-delay-small) both;
+  animation: slideInRight var(--animation-duration-subtle) var(--animation-ease) var(--animation-delay-small) both;
 }
 
 .contact-form-container::before {
@@ -312,7 +311,7 @@ export default {};
   text-transform: uppercase;
   letter-spacing: 0.05rem;
   cursor: pointer;
-  transition: all var(--transition-duration) ease;
+  transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 .btn-submit:hover {
@@ -329,7 +328,7 @@ export default {};
 /* Character Section */
 .character-section {
   text-align: center;
-  animation: slideInRight 1s ease-out 0.7s both;
+  animation: slideInRight 0.5s var(--animation-ease) 0.32s both;
 }
 
 .character-container {
@@ -390,7 +389,7 @@ export default {};
   gap: 1rem;
   max-width: 20rem;
   margin: 0 auto;
-  animation: slideInRight var(--animation-duration-subtle) ease-out var(--animation-delay-small) both;
+  animation: slideInRight var(--animation-duration-subtle) var(--animation-ease) var(--animation-delay-small) both;
 }
 
 .info-item {
@@ -401,8 +400,8 @@ export default {};
   background: rgba(255, 255, 255, 0.05);
   border: 0.0625rem solid rgba(245, 245, 220, 0.2);
   border-radius: 0;
-  transition: all var(--transition-duration) ease;
-  animation: slideInRight var(--animation-duration-subtle) ease-out var(--animation-delay-small) both;
+  transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+  animation: slideInRight var(--animation-duration-subtle) var(--animation-ease) var(--animation-delay-small) both;
 }
 
 .info-item:hover {

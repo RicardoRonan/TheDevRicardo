@@ -176,7 +176,6 @@ export default {
 /* Hero Section */
 .hero-section {
   padding: 4rem 0 2rem 0;
-  background: linear-gradient(135deg, rgba(220, 20, 60, 0.1), rgba(245, 245, 220, 0.1));
   border-bottom: 0.125rem solid var(--primary-color);
 }
 
@@ -186,7 +185,7 @@ export default {
   color: var(--primary-color);
   text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.8);
   margin-bottom: 1rem;
-  animation: slideInDown var(--animation-duration-subtle) ease-out;
+  animation: slideInDown var(--animation-duration-subtle) var(--animation-ease);
 }
 
 .hero-subtitle {
@@ -194,7 +193,7 @@ export default {
   color: var(--secondary-color);
   max-width: 600px;
   margin: 0 auto;
-  animation: slideInUp var(--animation-duration-subtle) ease-out var(--animation-delay-small) both;
+  animation: slideInUp var(--animation-duration-subtle) var(--animation-ease) var(--animation-delay-small) both;
 }
 
 /* Blog Content */
@@ -223,7 +222,7 @@ export default {
   border: 0.25rem solid rgba(220, 20, 60, 0.3);
   border-top: 0.25rem solid var(--primary-color);
   border-radius: 50%;
-  animation: spin var(--animation-duration-subtle) linear infinite;
+  animation: spin var(--animation-duration-subtle) var(--animation-ease) infinite;
   margin-bottom: 1rem;
 }
 
@@ -303,7 +302,7 @@ export default {
   border: var(--pixel-border);
   border-radius: 0;
   overflow: hidden;
-  transition: all var(--transition-duration) ease;
+  transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
   backdrop-filter: blur(0.25rem);
   display: flex;
   flex-direction: column;

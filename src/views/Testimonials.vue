@@ -208,7 +208,6 @@ export default {
 /* Hero Section */
 .hero-section {
   padding: 4rem 0 2rem 0;
-  background: linear-gradient(135deg, rgba(220, 20, 60, 0.1), rgba(245, 245, 220, 0.1));
   border-bottom: 0.125rem solid var(--primary-color);
   position: relative;
   z-index: 2;
@@ -220,7 +219,7 @@ export default {
   color: var(--primary-color);
   text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.8);
   margin-bottom: 1rem;
-  animation: slideInDown var(--animation-duration-subtle) ease-out;
+  animation: slideInDown var(--animation-duration-subtle) var(--animation-ease);
 }
 
 .hero-subtitle {
@@ -228,7 +227,7 @@ export default {
   color: var(--secondary-color);
   max-width: 600px;
   margin: 0 auto;
-  animation: slideInUp var(--animation-duration-subtle) ease-out var(--animation-delay-small) both;
+  animation: slideInUp var(--animation-duration-subtle) var(--animation-ease) var(--animation-delay-small) both;
 }
 
 /* Testimonials Content */
@@ -246,7 +245,7 @@ export default {
   padding: 2rem 1rem;
   max-width: 1200px;
   margin: 0 auto;
-  animation: slideInUp var(--animation-duration-subtle) ease-out both;
+  animation: slideInUp var(--animation-duration-subtle) var(--animation-ease) both;
 }
 
 /* Testimonial Card */
@@ -255,11 +254,11 @@ export default {
   border: 0.125rem solid var(--primary-color);
   border-radius: 0;
   padding: 2rem;
-  transition: all var(--transition-duration) ease;
+  transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
   backdrop-filter: blur(0.5rem);
   position: relative;
   overflow: hidden;
-  animation: slideInUp var(--animation-duration-subtle) ease-out both;
+  animation: slideInUp var(--animation-duration-subtle) var(--animation-ease) both;
   flex: 1 1 22rem;
   max-width: 30rem;
   min-width: 22rem;

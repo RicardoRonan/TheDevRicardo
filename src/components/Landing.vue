@@ -2,7 +2,7 @@
   <section id="home" class="min-vh-100 d-flex flex-column justify-content-center">
     <div class="container-fluid">
       <!-- Hero Section -->
-      <div class="row g-4 align-items-center min-vh-75">
+      <div class="row g-4 align-items-center">
         <!-- Text Content -->
         <div class="col-lg-6 col-md-12 order-2 order-lg-1">
           <div class="text-content">
@@ -18,7 +18,7 @@
               <router-link to="/blog" class="btn btn-outline-light btn-lg me-3 mb-2">
                 Read Blog
               </router-link>
-              <router-link to="/contact" class="btn btn-outline-light btn-lg mb-2">
+              <router-link to="/contact" class="btn btn-outline-light btn-lg  me-3 mb-2">
                 Get In Touch
               </router-link>
             </div>
@@ -192,7 +192,7 @@
   padding: 0.75rem 2rem;
   border-radius: 0;
   border-width: 0.125rem;
-  transition: all var(--transition-duration) ease;
+  transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
   text-transform: uppercase;
   letter-spacing: 0.05rem;
 }
@@ -211,7 +211,7 @@
   padding: 0.75rem 2rem;
   border-radius: 0;
   border-width: 0.125rem;
-  transition: all var(--transition-duration) ease;
+  transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
   text-transform: uppercase;
   letter-spacing: 0.05rem;
 }
@@ -227,7 +227,7 @@
 /* Character Image */
 #me-cont {
   padding: 2rem 0;
-  animation: slideInRight var(--animation-duration-subtle) ease-out var(--animation-delay-medium) both;
+  animation: slideInRight var(--animation-duration-subtle) var(--animation-ease) var(--animation-delay-medium) both;
 }
 
 #me {
@@ -245,7 +245,7 @@
 
 /* Platform Overview Section */
 .platform-overview {
-  animation: slideInUp var(--animation-duration-subtle) ease-out var(--animation-delay-medium) both;
+  animation: slideInUp var(--animation-duration-subtle) var(--animation-ease) var(--animation-delay-medium) both;
 }
 
 .platform-overview h3 {
@@ -262,11 +262,11 @@
   padding: 2rem 1.5rem;
   text-align: center;
   cursor: pointer;
-  transition: all var(--transition-duration) ease;
+  transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
   position: relative;
   overflow: hidden;
   backdrop-filter: blur(0.5rem);
-  animation: fadeIn var(--animation-duration-slow) ease-out var(--animation-delay-slower) both;
+  animation: fadeIn var(--animation-duration-slow) var(--animation-ease) var(--animation-delay-slower) both;
 }
 
 .platform-card:hover {
@@ -303,7 +303,7 @@
   color: var(--primary-color);
   font-size: 1.5rem;
   font-weight: bold;
-  transition: transform var(--transition-duration) ease;
+  transition: transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 .platform-card:hover .card-arrow {
@@ -312,7 +312,7 @@
 
 /* Stats Section */
 .stats-section {
-  animation: slideInUp var(--animation-duration-subtle) ease-out var(--animation-delay-small) both;
+  animation: slideInUp var(--animation-duration-subtle) var(--animation-ease) var(--animation-delay-small) both;
 }
 
 .stat-item {
@@ -321,7 +321,7 @@
   border-radius: 0;
   padding: 2rem 1rem;
   backdrop-filter: blur(0.5rem);
-  transition: all var(--transition-duration) ease;
+  transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 .stat-item:hover {
@@ -497,7 +497,7 @@
   }
   
   .lead {
-    font-size: 0.9rem;
+    display: none;
   }
   
   #me {

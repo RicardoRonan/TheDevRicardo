@@ -95,6 +95,7 @@ export default {};
   background-clip: border-box;
   border: none;
   border-radius: 0;
+  transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 #vue3 {
   padding: 5rem;

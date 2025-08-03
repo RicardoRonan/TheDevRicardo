@@ -17,7 +17,8 @@
   --btn-font-size-lg: 0.9rem;
   --btn-border-width: 0.125rem;
   --btn-border-radius: 0;
-  --btn-transition: all var(--transition-duration) ease;
+  --btn-transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+  --animation-ease: cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Share+Tech+Mono&display=swap');
@@ -143,7 +144,7 @@
   letter-spacing: 0.05rem;
   border-radius: var(--btn-border-radius);
   border-width: var(--btn-border-width);
-  transition: var(--btn-transition);
+  transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -352,11 +353,11 @@
 
 /* Animation utilities */
 .fade-in {
-  animation: fadeIn var(--animation-duration-subtle) ease-in-out;
+  animation: fadeIn var(--animation-duration-subtle) var(--animation-ease);
 }
 
 .slide-up {
-  animation: slideUp var(--animation-duration-subtle) ease-out;
+  animation: slideUp var(--animation-duration-subtle) var(--animation-ease);
 }
 
 .bounce {
