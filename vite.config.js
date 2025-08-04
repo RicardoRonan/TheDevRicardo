@@ -3,6 +3,7 @@ import vue from '@vitejs/plugin-vue';
 import path from 'path';
 
 export default defineConfig({
+  base: '/', // <-- Add this line!
   plugins: [vue()],
   resolve: {
     alias: {
@@ -10,4 +11,4 @@ export default defineConfig({
     },
   },
   publicDir: 'public',
-}); 
+});
