@@ -34,6 +34,9 @@ export default {
     }
   },
   mounted() {
+    // Hides loader immediately after mount (fix)
+    this.showLoader = false;
+
     // Expose a method for global loader control
     if (this.$root) {
       this.$root.setLoader = (val) => {
@@ -53,7 +56,7 @@ export default {
   --shadow-color: rgba(0, 0, 0, 0.5);
   --border-radius: 0;
   --font-family-pixel: pixel;
-  
+
   /* Animation Durations */
   --transition-duration: 0.4s; /* 400ms, smooth */
   --animation-duration-subtle: 0.4s; /* 400ms */
@@ -69,7 +72,7 @@ export default {
 
   /* Animation Easing */
   --animation-ease: cubic-bezier(0.25, 0.1, 0.25, 1);
-  
+
   /* Box Shadows */
   --box-shadow-light: 0.125rem 0.125rem 0.25rem var(--shadow-color);
   --box-shadow-medium: 0.25rem 0.25rem 0.375rem var(--shadow-color);
