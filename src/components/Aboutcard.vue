@@ -110,7 +110,7 @@
             <i class="fa-solid fa-palette"></i>
             <div class="fact-content">
               <h4>Creative Designer</h4>
-              <p>Love creating pixel art, digital illustrations, and graphic designs</p>
+              <p>Love creating art, digital illustrations, and graphic designs</p>
             </div>
           </div>
           <div class="fun-fact-item">
@@ -136,11 +136,52 @@
           </div>
         </div>
       </div>
+      <div id="my-top-tracks">
+                <h3 class="top-tracks-title">Check out my top tracks on Spotify</h3>
+        <iframe
+  title="Spotify Embed: Recommendation Playlist"
+  src="https://open.spotify.com/embed/playlist/59KzNyk7n95pNxM9IHpBBB?utm_source=generator&theme=0"
+  width="100%"
+  height="360"
+  style="min-height: 360px;"
+  frameborder="0"
+  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+  loading="lazy"
+></iframe>
+      </div>
     </div>
   </section>
 </template>
 <script>
 export default {};
+const playlistId = '59KzNyk7n95pNxM9IHpBBB';
+// Authorization token that must have been created previously. See : https://developer.spotify.com/documentation/web-api/concepts/authorization
+const token = 'BQBpaK0n4Jy20K2V1IhSF9qsjtGQBJpLAnBRvfBuzWR1npw6DShaTnaqHER0aT98gQ08_TmirtqSGbYdo755vV3BSZVkxpLysTkaVb15wvR4oixKyQIHF6DJrNLPe2T5Xy6hRnMdf88jkhGmzH-PHlWUNw-F45tG2yjAORUTnk8C01dj2tCjxRm__R1EboiTrGvhCbGS-VvEbYR_i9yEe9Xh8gOdZQOIslG6MTTNW5-NoD3hMEE9AjHQEot1HMEgFnkvlyggxId-IiiLFEvlDHfQgX0f_LoTQdFylCKbNhRFAMjb2Mp8Yp5cW3OWz7s4';
+async function fetchWebApi(endpoint, method, body) {
+  const res = await fetch(`https://api.spotify.com/${endpoint}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    method,
+    body:JSON.stringify(body)
+  });
+  return await res.json();
+}
+
+async function getTopTracks(){
+  // Endpoint reference : https://developer.spotify.com/documentation/web-api/reference/get-users-top-artists-and-tracks
+  return (await fetchWebApi(
+    'v1/me/top/tracks?time_range=long_term&limit=5', 'GET'
+  )).items;
+}
+
+const topTracks = await getTopTracks();
+console.log(
+  topTracks?.map(
+    ({name, artists}) =>
+      `${name} by ${artists.map(artist => artist.name).join(', ')}`
+  )
+);
 </script>
 <style scoped>
 /* About Section */
@@ -401,6 +442,7 @@ export default {};
   color: var(--primary-color);
   transform: translateY(-0.125rem);
   box-shadow: 0 0.25rem 0.5rem rgba(220, 20, 60, 0.3);
+  text-decoration: none;
 }
 
 .btn-outline-light {
@@ -415,6 +457,7 @@ export default {};
   color: var(--background-color);
   transform: translateY(-0.125rem);
   box-shadow: 0 0.25rem 0.5rem rgba(245, 245, 220, 0.3);
+    text-decoration: none;
 }
 
 /* Fun Facts Section */
@@ -425,7 +468,7 @@ export default {};
   animation: slideInUp var(--animation-duration-subtle) var(--animation-ease) var(--animation-delay-medium) both;
 }
 
-.fun-facts-title {
+.fun-facts-title ,.top-tracks-title{
   font-family: var(--font-family-pixel);
   font-size: 1.5rem;
   color: var(--secondary-color);
@@ -486,6 +529,9 @@ export default {};
   color: var(--text-color);
   margin: 0;
   line-height: 1.4;
+}
+#my-top-tracks {
+padding: 3rem 1rem 0;
 }
 
 /* Animations */

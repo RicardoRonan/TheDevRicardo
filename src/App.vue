@@ -61,7 +61,7 @@ export default {
   --transition-duration: 0.4s; /* 400ms, smooth */
   --animation-duration-subtle: 0.4s; /* 400ms */
   --animation-duration-slow: 0.5s; /* 500ms */
-  --animation-duration-floating: 0.5s; /* 500ms for floating effects */
+  --animation-duration-floating: 2s; /* 500ms for floating effects */
 
   /* Animation Delays */
   --animation-delay-small: 0.08s; /* 80ms for subtle stagger */

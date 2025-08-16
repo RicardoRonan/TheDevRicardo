@@ -519,6 +519,7 @@ export default {
   color: var(--primary-color);
   transform: translateY(-0.125rem);
   box-shadow: 0 0.25rem 0.5rem rgba(220, 20, 60, 0.3);
+    text-decoration: none;
 }
 
 /* Animations */

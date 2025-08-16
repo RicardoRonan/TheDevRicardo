@@ -1,7 +1,7 @@
 <template>
   <div class="projects-page">
     <!-- Hero Section -->
-    <section class="hero-section">
+    <!-- <section class="hero-section">
       <div class="container">
         <div class="row">
           <div class="col-12 text-center">
@@ -12,21 +12,21 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!-- Projects Content -->
-    <section class="projects-content">
-      <div class="container-fluid">
+    <!-- <section class="projects-content">
+      <div class="container-fluid"> -->
         <!-- Projects Grid -->
-        <div class="projects-grid">
+        <!-- <div class="projects-grid">
           <div 
             v-for="project in projects" 
             :key="project.id"
             class="project-card"
           >
-            <div class="project-content">
+            <div class="project-content"> -->
               <!-- Project Image -->
-              <div class="project-image-container">
+              <!-- <div class="project-image-container">
                 <img
                   :src="project.img"
                   :alt="project.title"
@@ -44,10 +44,10 @@
                     </a>
                   </div>
                 </div>
-              </div>
+              </div> -->
 
               <!-- Project Info -->
-              <div class="project-info">
+              <!-- <div class="project-info">
                 <h3 class="project-title">{{ project.title }}</h3>
                 <div class="project-tech">
                   <div class="tech-label">Built with:</div>
@@ -58,7 +58,12 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
+    <div class="maintenance-image-container">
+      <h1 class="maintenance-title">Projects Under Maintenance</h1>
+      <p class="maintenance-subtitle">Check back soon for updates!</p>
+    <img src="https://i.postimg.cc/JzXjtMZ2/pixel-caution.png" alt="Project Image" class="maintenance-image">
+  </div>
   </div>
 </template>
 <script>
@@ -114,6 +119,22 @@ export default {
           img: "https://i.postimg.cc/BvP2VcCB/les-chevres.png",
           language: "Vue.js, CSS3, JavaScript, Bootstrap",
         },
+         {
+          id: 7,
+          title: "Spottless Cleaning Services",
+          liveLink: "https://leschevresdigitalartgallery.netlify.app/",
+          githubLink: "N/A",
+          img: "https://i.postimg.cc/BvP2VcCB/les-chevres.png",
+          language: "Wordpress Full Setup",
+        },
+         {
+          id: 8,
+          title: "Damons Dynasty",
+          liveLink: "https://damonsdynasty.co.za/",
+          githubLink: "N/A",
+          img: "https://i.postimg.cc/DfHvNBhh/image.png",
+          language: "Wordpress Full Setup",
+        },
       ],
     };
   },
@@ -127,6 +148,20 @@ export default {
   color: var(--text-color);
   position: relative;
   overflow: hidden;
+}
+.maintenance-image {
+  width: 20rem;
+  height: auto;
+}
+.maintenance-image-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-image: url('https://i.postimg.cc/ZRQqryhF/pixel-bottom-cloud.png');
+  background-size: cover;
+  background-position: center;  
 }
 
 .projects-page::before {
