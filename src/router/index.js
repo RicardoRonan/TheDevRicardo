@@ -26,16 +26,16 @@ const routes = [
     name: "contact",
     component: () => import("../views/Contact.vue"),
   },
-  {
-    path: "/blog",
-    name: "blog",
-    component: () => import("../views/Blog.vue"),
-  },
-  {
-    path: "/blog/:id",
-    name: "single-blog",
-    component: () => import("../views/SingleBlog.vue"),
-  },
+  // {
+  //   path: "/blog",
+  //   name: "blog",
+  //   component: () => import("../views/Blog.vue"),
+  // },
+  // {
+  //   path: "/blog/:id",
+  //   name: "single-blog",
+  //   component: () => import("../views/SingleBlog.vue"),
+  // },
   {
     path: "/resources",
     name: "resources",

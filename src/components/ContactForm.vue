@@ -140,16 +140,6 @@ export default {};
   overflow: hidden;
 }
 
-.contact-page::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%23ffffff" opacity="0.02"/><circle cx="75" cy="75" r="1" fill="%23ffffff" opacity="0.02"/><circle cx="50" cy="10" r="1" fill="%23ffffff" opacity="0.02"/><circle cx="10" cy="90" r="1" fill="%23ffffff" opacity="0.02"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-  pointer-events: none;
-}
 
 /* Hero Section */
 .hero-section {
@@ -195,16 +185,6 @@ export default {};
   animation: slideInRight var(--animation-duration-subtle) var(--animation-ease) var(--animation-delay-small) both;
 }
 
-.contact-form-container::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(45deg, transparent, rgba(220, 20, 60, 0.05), transparent);
-  pointer-events: none;
-}
 
 /* Form Header */
 .form-header {
@@ -505,23 +485,33 @@ export default {};
     font-size: 1.2rem;
   }
   
+  .character-section {
+    margin-top: 2rem;
+  }
+  
   .character-image {
-    width: 8rem;
-    height: 8rem;
+    width: 10rem;
+    height: 10rem;
   }
   
   .speech-bubble {
-    top: -0.5rem;
-    right: -1rem;
-    min-width: 6rem;
+    top: -3rem;
+    right: -1.5rem;
+    min-width: 7rem;
+    padding: 0.6rem 0.8rem;
   }
   
   .bubble-text {
-    font-size: 0.6rem;
+    font-size: 0.65rem;
+  }
+  
+  .bubble-tail {
+    left: 1.5rem;
   }
   
   .contact-info {
     max-width: 100%;
+    margin-top: 1rem;
   }
   
   .info-item {
@@ -565,17 +555,66 @@ export default {};
     font-size: 0.8rem;
   }
   
+  .character-section {
+    margin-top: 5.5rem;
+  }
+  
   .character-image {
-    width: 6rem;
-    height: 6rem;
+    width: 8rem;
+    height: 8rem;
   }
   
   .speech-bubble {
-    min-width: 5rem;
+    top: -5.5rem;
+    right: -1rem;
+    min-width: 6rem;
+    padding: 0.5rem 0.7rem;
   }
   
   .bubble-text {
-    font-size: 0.5rem;
+    font-size: 0.6rem;
+  }
+  
+  .bubble-tail {
+    left: 1.2rem;
+  }
+  
+  .contact-info {
+    margin-top: 0.5rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .character-image {
+    width: 7rem;
+    height: 7rem;
+  }
+  
+  .speech-bubble {
+    top: -2rem;
+    right: -0.8rem;
+    min-width: 5.5rem;
+    padding: 0.4rem 0.6rem;
+  }
+  
+  .bubble-text {
+    font-size: 0.55rem;
+  }
+  
+  .bubble-tail {
+    left: 1rem;
+  }
+  
+  .contact-info {
+    gap: 0.8rem;
+  }
+  
+  .info-item {
+    padding: 0.6rem;
+  }
+  
+  .info-item span {
+    font-size: 0.65rem;
   }
 }
 

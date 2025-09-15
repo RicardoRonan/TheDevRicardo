@@ -153,4 +153,17 @@ export default {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-1.5rem); }
 }
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --primary-color: #ff0000;
+    --secondary-color: #ffffff;
+    --background-color: #000000;
+    --text-color: #ffffff;
+    --box-shadow-light: 0.125rem 0.125rem 0.25rem rgba(255, 255, 255, 0.8);
+    --box-shadow-medium: 0.25rem 0.25rem 0.375rem rgba(255, 255, 255, 0.8);
+    --box-shadow-heavy: 0.3125rem 0.3125rem 0.625rem rgba(255, 255, 255, 0.8);
+  }
+}
 </style>

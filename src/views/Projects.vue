@@ -1,7 +1,7 @@
 <template>
-  <div class="projects-page">
+  <div class="projects-page" id="projects">
     <!-- Hero Section -->
-    <!-- <section class="hero-section">
+    <section class="hero-section">
       <div class="container">
         <div class="row">
           <div class="col-12 text-center">
@@ -12,135 +12,115 @@
           </div>
         </div>
       </div>
-    </section> -->
+    </section>
 
     <!-- Projects Content -->
-    <!-- <section class="projects-content">
-      <div class="container-fluid"> -->
-        <!-- Projects Grid -->
-        <!-- <div class="projects-grid">
-          <div 
-            v-for="project in projects" 
-            :key="project.id"
-            class="project-card"
-          >
-            <div class="project-content"> -->
-              <!-- Project Image -->
-              <!-- <div class="project-image-container">
-                <img
-                  :src="project.img"
-                  :alt="project.title"
-                  class="project-image"
-                />
-                <div class="project-overlay">
-                  <div class="project-links">
-                    <a :href="project.liveLink" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm live-link">
-                      <i class="fa-solid fa-external-link-alt"></i>
-                      Live
-                    </a>
-                    <a :href="project.githubLink" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm github-link">
-                      <i class="fa-brands fa-github"></i>
-                      GitHub
-                    </a>
-                  </div>
-                </div>
-              </div> -->
-
-              <!-- Project Info -->
-              <!-- <div class="project-info">
-                <h3 class="project-title">{{ project.title }}</h3>
-                <div class="project-tech">
-                  <div class="tech-label">Built with:</div>
-                  <div class="tech-stack">{{ project.language }}</div>
-                </div>
-              </div>
-            </div>
+    <section class="projects-content">
+      <div class="container-fluid">
+        <!-- Category Filter -->
+        <div class="category-filter">
+          <div class="filter-buttons">
+            <button 
+              @click="setCategory('all')" 
+              :class="['filter-btn', { 'active': selectedCategory === 'all' }]"
+            >
+              All Projects
+            </button>
+            <button 
+              @click="setCategory('client')" 
+              :class="['filter-btn', { 'active': selectedCategory === 'client' }]"
+            >
+              Client Work
+            </button>
+            <button 
+              @click="setCategory('personal')" 
+              :class="['filter-btn', { 'active': selectedCategory === 'personal' }]"
+            >
+              Personal Projects
+            </button>
           </div>
         </div>
+
+        <!-- Section Header -->
+        <div class="section-header">
+          <p class="instruction-text">
+            Double-click on a folder to open project details
+          </p>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="projects-grid">
+          <FolderCard
+            v-for="project in filteredProjects" 
+            :key="project.id"
+            :project-title="project.title"
+            :project-data="project"
+            @open-project="openProjectModal"
+          />
+        </div>
       </div>
-    </section> -->
-    <div class="maintenance-image-container">
-      <h1 class="maintenance-title">Projects Under Maintenance</h1>
-      <p class="maintenance-subtitle">Check back soon for updates!</p>
-    <img src="https://i.postimg.cc/JzXjtMZ2/pixel-caution.png" alt="Project Image" class="maintenance-image">
-  </div>
+    </section>
+
+    <!-- Project Modal -->
+    <ProjectModal
+      :is-visible="isModalVisible"
+      :project-data="selectedProject"
+      @close="closeProjectModal"
+    />
   </div>
 </template>
 <script>
+import FolderCard from '@/components/FolderCard.vue'
+import ProjectModal from '@/components/ProjectModal.vue'
+import { projects } from '@/data/projects.js'
+
 export default {
+  name: 'Projects',
+  components: {
+    FolderCard,
+    ProjectModal
+  },
+  mounted() {
+    const root = document.getElementById('projects')
+    if (root) { 
+      void root.offsetWidth
+      root.classList.add('entered') 
+    }
+  },
   data() {
     return {
-      projects: [
-        {
-          id: 1,
-          title: "Vue.js Portfolio",
-          liveLink: "https://vue-portfolio-c077e.web.app/",
-          githubLink: "https://github.com/RicardoRonan/vue-portfolio",
-          img: "https://i.postimg.cc/J4svKSky/BMI-calc.png",
-          language: "Vue.js, CSS3, JavaScript, Firebase",
-        },
-        {
-          id: 2,
-          title: "BMI Calculator",
-          liveLink: "https://check-your-bmi.netlify.app/",
-          githubLink: "https://github.com/RicardoRonan/BMI-calculator",
-          img: "https://i.postimg.cc/J4svKSky/BMI-calc.png",
-          language: "HTML5, CSS3, JavaScript, Bootstrap",
-        },
-        {
-          id: 3,
-          title: "Task Management App",
-          liveLink: "https://app-of-the-to-do.netlify.app/",
-          githubLink: "https://github.com/RicardoRonan/todo-app",
-          img: "https://i.postimg.cc/0N0BbsL4/todo-list.png",
-          language: "HTML5, CSS3, JavaScript, Bootstrap",
-        },
-        {
-          id: 4,
-          title: "Temperature Converter",
-          liveLink: "https://converter-of-temp.netlify.app/",
-          githubLink: "https://github.com/RicardoRonan/Temperature-converter",
-          img: "https://i.postimg.cc/7ZDcDhRz/temp-converter.png",
-          language: "HTML5, CSS3, JavaScript, Bootstrap",
-        },
-        {
-          id: 5,
-          title: "Property Listing Platform",
-          liveLink: "https://listing-of-property.netlify.app/",
-          githubLink: "https://github.com/RicardoRonan/Property-listing",
-          img: "https://i.postimg.cc/Gp6xLSpf/Fye-prooperties.png",
-          language: "HTML5, CSS3, JavaScript, Bootstrap",
-        },
-        {
-          id: 6,
-          title: "Digital Art Gallery",
-          liveLink: "https://leschevresdigitalartgallery.netlify.app/",
-          githubLink: "https://github.com/fatimagalant/Vue-Portfolio",
-          img: "https://i.postimg.cc/BvP2VcCB/les-chevres.png",
-          language: "Vue.js, CSS3, JavaScript, Bootstrap",
-        },
-         {
-          id: 7,
-          title: "Spottless Cleaning Services",
-          liveLink: "https://leschevresdigitalartgallery.netlify.app/",
-          githubLink: "N/A",
-          img: "https://i.postimg.cc/BvP2VcCB/les-chevres.png",
-          language: "Wordpress Full Setup",
-        },
-         {
-          id: 8,
-          title: "Damons Dynasty",
-          liveLink: "https://damonsdynasty.co.za/",
-          githubLink: "N/A",
-          img: "https://i.postimg.cc/DfHvNBhh/image.png",
-          language: "Wordpress Full Setup",
-        },
-      ],
+      selectedCategory: 'all', // 'all', 'client', 'personal'
+      projects: projects,
+      isModalVisible: false,
+      selectedProject: null
     };
+  },
+  computed: {
+    filteredProjects() {
+      if (this.selectedCategory === 'all') {
+        return this.projects;
+      }
+      return this.projects.filter(project => project.category === this.selectedCategory);
+    }
+  },
+  methods: {
+    setCategory(category) {
+      this.selectedCategory = category;
+    },
+    openProjectModal(project) {
+      this.selectedProject = project;
+      this.isModalVisible = true;
+    },
+    closeProjectModal() {
+      this.isModalVisible = false;
+      this.selectedProject = null;
+    }
   },
 };
 </script>
 <style scoped>
+/* Custom styles for Projects page */
+
 /* Projects Page */
 .projects-page {
   min-height: 100vh;
@@ -148,31 +128,6 @@ export default {
   color: var(--text-color);
   position: relative;
   overflow: hidden;
-}
-.maintenance-image {
-  width: 20rem;
-  height: auto;
-}
-.maintenance-image-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  background-image: url('https://i.postimg.cc/ZRQqryhF/pixel-bottom-cloud.png');
-  background-size: cover;
-  background-position: center;  
-}
-
-.projects-page::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%23ffffff" opacity="0.02"/><circle cx="75" cy="75" r="1" fill="%23ffffff" opacity="0.02"/><circle cx="50" cy="10" r="1" fill="%23ffffff" opacity="0.02"/><circle cx="10" cy="90" r="1" fill="%23ffffff" opacity="0.02"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-  pointer-events: none;
 }
 
 /* Hero Section */
@@ -186,18 +141,21 @@ export default {
 .hero-title {
   font-family: var(--font-family-pixel);
   font-size: clamp(2.5rem, 5vw, 4rem);
-  color: var(--primary-color);
   text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.8);
   margin-bottom: 1rem;
-  animation: slideInDown var(--animation-duration-subtle) var(--animation-ease);
+  opacity: 0;
+  transform: translateY(-2rem);
+  transition: opacity var(--transition-duration) var(--transition-ease), transform var(--transition-duration) var(--transition-ease);
 }
 
 .hero-subtitle {
   font-size: clamp(1rem, 2vw, 1.25rem);
-  color: var(--secondary-color);
   max-width: 600px;
   margin: 0 auto;
-  animation: slideInUp var(--animation-duration-subtle) var(--animation-ease) var(--animation-delay-small) both;
+  opacity: 0;
+  transform: translateY(2rem);
+  transition: opacity var(--transition-duration) var(--transition-ease), transform var(--transition-duration) var(--transition-ease);
+  transition-delay: 0.1s;
 }
 
 /* Projects Content */
@@ -207,346 +165,173 @@ export default {
   z-index: 2;
 }
 
+/* Category Filter */
+.category-filter {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3rem;
+  opacity: 0;
+  transform: translateY(2rem);
+  transition: opacity var(--transition-duration) var(--transition-ease), transform var(--transition-duration) var(--transition-ease);
+  transition-delay: 0.1s;
+}
+
+.filter-buttons {
+  display: flex;
+  gap: 1rem;
+  padding: 0.5rem;
+  background: rgba(220, 20, 60, 0.1);
+  backdrop-filter: blur(0.5rem);
+  border: 2px solid var(--primary-color);
+  border-radius: 8px;
+}
+
+.filter-btn {
+  font-family: var(--font-family-pixel);
+  font-size: 0.7rem;
+  padding: 0.6rem 1rem;
+  background: transparent;
+  color: var(--text-color);
+  border: 2px solid var(--primary-color);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease-out;
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+}
+
+.filter-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(220, 20, 60, 0.3);
+  background: rgba(220, 20, 60, 0.1);
+}
+
+.filter-btn.active {
+  background: var(--primary-color);
+  color: var(--background-color);
+  box-shadow: 0 2px 4px rgba(220, 20, 60, 0.4);
+}
+
+/* Section Header */
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  opacity: 0;
+  transform: translateY(2rem);
+  transition: opacity var(--transition-duration) var(--transition-ease), transform var(--transition-duration) var(--transition-ease);
+  transition-delay: 0.15s;
+}
+
+.section-title {
+  font-family: var(--font-family-pixel);
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.8);
+  margin-bottom: 1rem;
+}
+
+.section-subtitle {
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  max-width: 600px;
+  margin: 0 auto 1rem auto;
+  opacity: 0.9;
+}
+
+.instruction-text {
+  font-family: var(--font-family-pixel);
+  font-size: 0.7rem;
+  opacity: 0.7;
+  margin: 0;
+}
+
 /* Projects Grid */
 .projects-grid {
   display: flex;
   flex-wrap: wrap;
   gap: 2rem;
   padding: 2rem 1rem;
-  justify-content: center;
-  animation: slideInUp var(--animation-duration-subtle) var(--animation-ease) both;
-}
-
-/* Project Card */
-.project-card {
-  background: rgba(255, 255, 255, 0.05);
-  border: 0.125rem solid var(--primary-color);
-  border-radius: 0;
-  overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
-  backdrop-filter: blur(0.5rem);
-  position: relative;
-  animation: slideInUp var(--animation-duration-subtle) var(--animation-ease) both;
-  flex: 1 1 20rem;
-  max-width: 30rem;
-  min-width: 20rem;
-}
-
-.project-card:nth-child(1) { animation-delay: var(--animation-delay-small); }
-.project-card:nth-child(2) { animation-delay: var(--animation-delay-medium); }
-.project-card:nth-child(3) { animation-delay: var(--animation-delay-medium); }
-.project-card:nth-child(4) { animation-delay: var(--animation-delay-large); }
-.project-card:nth-child(5) { animation-delay: var(--animation-delay-large); }
-.project-card:nth-child(6) { animation-delay: var(--animation-delay-larger); }
-
-.project-card:hover {
-  transform: translateY(-0.5rem) scale(1.02);
-  box-shadow: 0 1rem 2rem rgba(220, 20, 60, 0.3);
-  border-color: var(--secondary-color);
-  background: rgba(255, 255, 255, 0.08);
-}
-
-.project-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(45deg, transparent, rgba(220, 20, 60, 0.1), transparent);
+  justify-content: start;
   opacity: 0;
-  transition: opacity var(--transition-duration) ease;
-  z-index: 1;
+  transform: translateY(2rem);
+  transition: opacity var(--transition-duration) var(--transition-ease), transform var(--transition-duration) var(--transition-ease);
 }
 
-.project-card:hover::before {
-  opacity: 1;
-}
+/* Folder Card Styling - handled by FolderCard component */
 
-/* Project Image Container */
-.project-image-container {
-  position: relative;
-  overflow: hidden;
-  height: 12rem;
-  background: rgba(0, 0, 0, 0.3);
-}
-
-.project-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform var(--animation-duration-subtle) ease, filter var(--animation-duration-subtle) ease;
-  filter: drop-shadow(0 0.25rem 0.5rem rgba(0, 0, 0, 0.5));
-}
-
-.project-card:hover .project-image {
-  transform: scale(1.05);
-  filter: drop-shadow(0 0.5rem 1rem rgba(0, 0, 0, 0.7));
-}
-
-/* Project Overlay */
-.project-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.8);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity var(--animation-duration-subtle) ease, transform var(--animation-duration-subtle) ease;
-  z-index: 2;
-}
-
-.project-card:hover .project-overlay {
+/* Enter reveal */
+.projects-page.entered .hero-title,
+.projects-page.entered .hero-subtitle,
+.projects-page.entered .category-filter,
+.projects-page.entered .section-header,
+.projects-page.entered .projects-grid {
   opacity: 1;
   transform: translateY(0);
-}
-
-.project-links {
-  display: flex;
-  gap: 1rem;
-  transition: opacity var(--animation-duration-subtle) ease;
-  opacity: 0;
-  transform: translateY(1rem);
-  transition: opacity var(--animation-duration-subtle) ease, transform var(--animation-duration-subtle) ease;
-}
-
-.project-card:hover .project-links {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.project-link {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 1rem;
-  border: 0.125rem solid transparent;
-  border-radius: 0;
-  text-decoration: none;
-  transition: all var(--transition-duration) ease;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(0.25rem);
-  position: relative;
-  overflow: hidden;
-  cursor: pointer;
-}
-
-.project-link::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: left var(--animation-duration-subtle) ease;
-}
-
-.project-link:hover::before {
-  left: 100%;
-}
-
-.project-link i {
-  font-size: 1.5rem;
-}
-
-.project-link span {
-  font-family: var(--font-family-pixel);
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05rem;
-}
-
-.live-link {
-  color: var(--secondary-color);
-  border-color: var(--secondary-color);
-}
-
-.live-link:hover {
-  background: var(--secondary-color);
-  color: var(--background-color);
-  transform: translateY(-0.25rem);
-  box-shadow: 0 0.5rem 1rem rgba(245, 245, 220, 0.3), 0 0 1rem rgba(245, 245, 220, 0.5);
-}
-
-.github-link {
-  color: var(--text-color);
-  border-color: var(--text-color);
-}
-
-.github-link:hover {
-  background: var(--text-color);
-  color: var(--background-color);
-  transform: translateY(-0.25rem);
-  box-shadow: 0 0.5rem 1rem rgba(255, 255, 255, 0.3), 0 0 1rem rgba(255, 255, 255, 0.5);
-}
-
-/* Project Info */
-.project-info {
-  padding: 1.5rem;
-  position: relative;
-  z-index: 2;
-}
-
-.project-title {
-  font-family: var(--font-family-pixel);
-  font-size: 1.1rem;
-  color: var(--secondary-color);
-  margin: 0 0 1rem 0;
-  text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.8);
-  line-height: 1.3;
-}
-
-.project-tech {
-  border-top: 0.0625rem solid rgba(245, 245, 220, 0.2);
-  padding-top: 1rem;
-}
-
-.tech-label {
-  font-family: var(--font-family-pixel);
-  font-size: 0.7rem;
-  color: var(--primary-color);
-  text-transform: uppercase;
-  letter-spacing: 0.05rem;
-  margin-bottom: 0.5rem;
-}
-
-.tech-stack {
-  font-family: var(--font-family-pixel);
-  font-size: 0.8rem;
-  color: var(--text-color);
-  line-height: 1.4;
-  opacity: 0.9;
-}
-
-/* Animations */
-@keyframes slideInDown {
-  from {
-    opacity: 0;
-    transform: translateY(-2rem);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideInUp {
-  from {
-    opacity: 0;
-    transform: translateY(2rem);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes shimmer {
-  0% {
-    transform: translateX(-100%);
-  }
-  100% {
-    transform: translateX(100%);
-  }
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .projects-grid {
+  .category-filter {
+    margin-bottom: 2rem;
+  }
+  
+  .filter-buttons {
     flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .filter-btn {
+    font-size: 0.6rem;
+    padding: 0.5rem 0.8rem;
+  }
+  
+  .section-header {
+    margin-bottom: 2rem;
+  }
+  
+  .section-title {
+    font-size: 1.5rem;
+  }
+  
+  .section-subtitle {
+    font-size: 0.9rem;
+  }
+  
+  .instruction-text {
+    font-size: 0.6rem;
+  }
+  
+  .projects-grid {
     gap: 1.5rem;
     padding: 1rem;
-    align-items: center;
-  }
-  
-  .project-card {
-    max-width: 100%;
-    min-width: auto;
-  }
-  
-  .projects-title {
-    font-size: 2rem;
-  }
-  
-  .projects-subtitle {
-    font-size: 1rem;
-  }
-  
-  .project-image-container {
-    height: 10rem;
-  }
-  
-  .project-info {
-    padding: 1rem;
-  }
-  
-  .project-title {
-    font-size: 1rem;
-  }
-  
-  .project-links {
-    gap: 0.5rem;
-  }
-  
-  .project-link {
-    padding: 0.75rem;
-  }
-  
-  .project-link i {
-    font-size: 1.2rem;
-  }
-  
-  .project-link span {
-    font-size: 0.7rem;
+    justify-content: start;
   }
 }
 
 @media (max-width: 576px) {
-  .projects-title {
-    font-size: 1.8rem;
+  .hero-title {
+    font-size: 2rem;
   }
   
-  .projects-subtitle {
+  .hero-subtitle {
     font-size: 0.9rem;
   }
   
-  .project-image-container {
-    height: 8rem;
+  .section-title {
+    font-size: 1.3rem;
   }
   
-  .project-title {
-    font-size: 0.9rem;
+  .section-subtitle {
+    font-size: 0.8rem;
   }
   
-  .tech-stack {
-    font-size: 0.7rem;
+  .instruction-text {
+    font-size: 0.5rem;
   }
   
-  .project-link {
+  .projects-grid {
+    gap: 1rem;
     padding: 0.5rem;
-  }
-  
-  .project-link i {
-    font-size: 1rem;
-  }
-  
-  .project-link span {
-    font-size: 0.6rem;
   }
 }
 
@@ -557,42 +342,13 @@ export default {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-  
-  .project-card {
-    animation: none;
-  }
-  
-  .project-card:hover {
-    transform: none;
-  }
-  
-  .project-image {
-    transform: none !important;
-  }
-  
-  .project-overlay {
-    transition: opacity 0.01ms ease !important;
-  }
-  
-  .project-links {
-    transition: opacity 0.01ms ease !important;
-  }
 }
 
 /* High contrast mode support */
 @media (prefers-contrast: high) {
-  .project-card {
-    border-color: #ffffff;
-    background: #000000;
-  }
-  
-  .project-overlay {
-    background: rgba(0, 0, 0, 0.9);
-  }
-  
-  .project-link {
-    border-color: #ffffff;
-    background: #000000;
+  .filter-buttons {
+    border-color: var(--text-color);
+    background: var(--background-color);
   }
 }
 </style>

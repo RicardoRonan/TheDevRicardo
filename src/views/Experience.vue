@@ -159,33 +159,41 @@
         <!-- Skills & Achievements Section -->
         <div class="achievements-section">
           <h3 class="achievements-title">Key Achievements & Skills</h3>
-          <div class="achievements-grid">
-            <div class="achievement-item">
-              <i class="fa-solid fa-trophy"></i>
-              <div class="achievement-content">
-                <h4>Fintech Expertise</h4>
-                <p>2+ years developing secure payment systems and financial integrations</p>
+          <div class="row g-4">
+            <div class="col-lg-6 col-md-6">
+              <div class="achievement-item">
+                <i class="fa-solid fa-trophy"></i>
+                <div class="achievement-content">
+                  <h4>Fintech Expertise</h4>
+                  <p>2+ years developing secure payment systems and financial integrations</p>
+                </div>
               </div>
             </div>
-            <div class="achievement-item">
-              <i class="fa-solid fa-robot"></i>
-              <div class="achievement-content">
-                <h4>Automation Specialist</h4>
-                <p>Expert in workflow automation and process optimization using modern tools</p>
+            <div class="col-lg-6 col-md-6">
+              <div class="achievement-item">
+                <i class="fa-solid fa-robot"></i>
+                <div class="achievement-content">
+                  <h4>Automation Specialist</h4>
+                  <p>Expert in workflow automation and process optimization using modern tools</p>
+                </div>
               </div>
             </div>
-            <div class="achievement-item">
-              <i class="fa-solid fa-users"></i>
-              <div class="achievement-content">
-                <h4>Team Collaboration</h4>
-                <p>Proven track record working in Agile environments and cross-functional teams</p>
+            <div class="col-lg-6 col-md-6">
+              <div class="achievement-item">
+                <i class="fa-solid fa-users"></i>
+                <div class="achievement-content">
+                  <h4>Team Collaboration</h4>
+                  <p>Proven track record working in Agile environments and cross-functional teams</p>
+                </div>
               </div>
             </div>
-            <div class="achievement-item">
-              <i class="fa-solid fa-graduation-cap"></i>
-              <div class="achievement-content">
-                <h4>Continuous Learning</h4>
-                <p>Always staying updated with latest technologies and industry best practices</p>
+            <div class="col-lg-6 col-md-6">
+              <div class="achievement-item">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <div class="achievement-content">
+                  <h4>Continuous Learning</h4>
+                  <p>Always staying updated with latest technologies and industry best practices</p>
+                </div>
               </div>
             </div>
           </div>
@@ -337,7 +345,6 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(45deg, transparent, rgba(220, 20, 60, 0.05), transparent);
   pointer-events: none;
 }
 
@@ -472,7 +479,7 @@ export default {
 
 .tech-tag {
   display: inline-block;
-  padding: 0.25rem 0.75rem;
+  padding: 0.5rem 1rem;
   font-family: var(--font-family-pixel);
   font-size: 0.6rem;
   background: rgba(0, 0, 0, 0.3);
@@ -510,27 +517,24 @@ export default {
 }
 
 .achievements-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
   max-width: 60rem;
   margin: 0 auto;
-  justify-content: center;
 }
 
 .achievement-item {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 1rem;
-  padding: 1.5rem;
+  text-align: center;
+  gap: 0.75rem;
+  padding: 1.5rem 1rem;
   background: rgba(255, 255, 255, 0.05);
   border: 0.125rem solid var(--primary-color);
   border-radius: 0;
   backdrop-filter: blur(0.5rem);
   transition: all var(--transition-duration) ease;
-  flex: 1 1 15rem;
-  max-width: 20rem;
-  min-width: 15rem;
+  height: auto;
+  justify-content: space-between;
 }
 
 .achievement-item:hover {
@@ -543,24 +547,28 @@ export default {
 .achievement-item i {
   color: var(--primary-color);
   font-size: 2rem;
-  min-width: 3rem;
-  text-align: center;
+  margin-bottom: 0.25rem;
+  filter: drop-shadow(0 0.125rem 0.25rem rgba(0, 0, 0, 0.5));
 }
 
 .achievement-content h4 {
   font-family: var(--font-family-pixel);
-  font-size: 0.9rem;
-  color: var(--secondary-color);
-  margin: 0 0 0.5rem 0;
+  font-size: 1rem;
+  color: var(--primary-color);
+  margin: 0.5rem 0 0.25rem 0;
   text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.8);
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
 }
 
 .achievement-content p {
   font-family: var(--font-family-pixel);
-  font-size: 0.7rem;
-  color: var(--text-color);
+  font-size: 0.75rem;
+  color: var(--secondary-color);
   margin: 0;
-  line-height: 1.4;
+  line-height: 1.3;
+  opacity: 0.9;
+  flex-grow: 1;
 }
 
 /* Animations */
@@ -662,20 +670,13 @@ export default {
     font-size: 0.7rem;
   }
   
-  .achievements-grid {
-    flex-direction: column;
-    align-items: center;
-  }
-  
   .achievement-item {
-    padding: 1rem;
-    max-width: 100%;
-    min-width: auto;
+    padding: 1.5rem 1rem;
+    height: auto;
   }
   
   .achievement-item i {
-    font-size: 1.5rem;
-    min-width: 2rem;
+    font-size: 2rem;
   }
 }
 
@@ -714,7 +715,7 @@ export default {
   
   .tech-tag {
     font-size: 0.5rem;
-    padding: 0.2rem 0.5rem;
+    padding: 0.5rem 1rem;
   }
   
   .achievements-title {
@@ -722,11 +723,11 @@ export default {
   }
   
   .achievement-content h4 {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
   }
   
   .achievement-content p {
-    font-size: 0.6rem;
+    font-size: 0.7rem;
   }
 }
 

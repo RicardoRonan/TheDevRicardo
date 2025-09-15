@@ -6,7 +6,8 @@
         <!-- Text Content -->
         <div class="col-lg-6 col-md-12 order-2 order-lg-1">
           <div class="text-content">
-            <h1 id="title" class="text-light mb-3">Welcome, I'm Ricardo Moses</h1>
+            <h1 id="title" class="text-light mb-3">Welcome, I'm</h1>
+            <h1 id="title-name" class="mb-3">Ricardo Moses</h1>
             <h2 id="sub-title" class="text-light mb-4">Full-Stack Developer & Automation Specialist</h2>
             <p class="lead text-light mb-4">
               Welcome to my digital space where I showcase my work, share insights through blogs, and provide valuable resources and tools for the developer community.
@@ -15,9 +16,9 @@
               <router-link to="/projects" class="btn btn-primary btn-lg me-3 mb-2">
                 View My Work
               </router-link>
-              <router-link to="/blog" class="btn btn-outline-light btn-lg me-3 mb-2">
+              <!-- <router-link to="/blog" class="btn btn-outline-light btn-lg me-3 mb-2">
                 Read Blog
-              </router-link>
+              </router-link> -->
               <router-link to="/contact" class="btn btn-outline-light btn-lg  me-3 mb-2">
                 Get In Touch
               </router-link>
@@ -45,7 +46,7 @@
             <h3 class="text-light text-center mb-5">Explore My Platform</h3>
             <div class="row g-4">
               <!-- Portfolio Section -->
-              <div class="col-lg-3 col-md-6">
+              <div class="col-lg-4 col-md-6">
                 <div class="platform-card" @click="$router.push('/projects')">
                   <div class="card-icon">💼</div>
                   <h4>Portfolio</h4>
@@ -55,17 +56,17 @@
               </div>
               
               <!-- Blog Section -->
-              <div class="col-lg-3 col-md-6">
+              <!-- <div class="col-lg-3 col-md-6">
                 <div class="platform-card" @click="$router.push('/blog')">
                   <div class="card-icon">📝</div>
                   <h4>Blog</h4>
                   <p>Insights, tutorials, and thoughts on technology, development, and innovation</p>
                   <div class="card-arrow">→</div>
                 </div>
-              </div>
+              </div> -->
               
               <!-- Resources Section -->
-              <div class="col-lg-3 col-md-6">
+              <div class="col-lg-4 col-md-6">
                 <div class="platform-card" @click="$router.push('/resources')">
                   <div class="card-icon">📚</div>
                   <h4>Resources</h4>
@@ -75,7 +76,7 @@
               </div>
               
               <!-- Tools Section -->
-              <div class="col-lg-3 col-md-6">
+              <div class="col-lg-4 col-md-6">
                 <div class="platform-card" @click="$router.push('/contact')">
                   <div class="card-icon">🛠️</div>
                   <h4>Tools</h4>
@@ -93,25 +94,25 @@
         <div class="col-12">
           <div class="stats-section">
             <div class="row g-4 text-center">
-              <div class="col-lg-3 col-md-6">
+              <div class="col-lg-4 col-md-6">
                 <div class="stat-item">
                   <div class="stat-number">10+</div>
                   <div class="stat-label">Projects Completed</div>
                 </div>
               </div>
-              <div class="col-lg-3 col-md-6">
+              <!-- <div class="col-lg-3 col-md-6">
                 <div class="stat-item">
                   <div class="stat-number">2+</div>
                   <div class="stat-label">Blog Posts</div>
                 </div>
-              </div>
-              <div class="col-lg-3 col-md-6">
+              </div> -->
+              <div class="col-lg-4 col-md-6">
                 <div class="stat-item">
                   <div class="stat-number">2+</div>
                   <div class="stat-label">Years Experience</div>
                 </div>
               </div>
-              <div class="col-lg-3 col-md-6">
+              <div class="col-lg-4 col-md-6">
                 <div class="stat-item">
                   <div class="stat-number">5+</div>
                   <div class="stat-label">Happy Clients</div>
@@ -125,12 +126,24 @@
   </section>
 </template>
 
+<script setup>
+import { onMounted } from 'vue'
+
+onMounted(() => {
+  const home = document.getElementById('home')
+  if (home) {
+    // Force reflow to ensure transitions run after initial styles apply
+    void home.offsetWidth
+    home.classList.add('entered')
+  }
+})
+</script>
+
 <style scoped>
 /* Home Section */
 #home {
   position: relative;
   overflow: hidden;
-  animation: fadeIn var(--animation-duration-subtle) ease-in-out;
 }
 
 #home::before {
@@ -153,6 +166,7 @@
   padding: 2rem 0;
   z-index: 2;
   position: relative;
+
 }
 
 #title {
@@ -160,7 +174,23 @@
   font-family: var(--font-family-pixel);
   text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.8);
   line-height: 1.2;
-  animation: slideInLeft var(--animation-duration-subtle) ease-out var(--animation-delay-small) both;
+  opacity: 0;
+  transform: translateX(-2rem);
+  text-align: left;
+  transition: opacity var(--transition-duration) ease-out, transform var(--transition-duration) ease-out;
+}
+
+#title-name {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-family: var(--font-family-pixel);
+  text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.8);
+  line-height: 1.2;
+  opacity: 0;
+  color: var(--primary-color);
+  transform: translateX(-2rem);
+  text-align: left;
+  transition: opacity var(--transition-duration) ease-out, transform var(--transition-duration) ease-out;
+  transition-delay: 0.1s;
 }
 
 #sub-title {
@@ -169,20 +199,24 @@
   text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.8);
   color: var(--primary-color);
   line-height: 1.3;
-  animation: slideInLeft var(--animation-duration-subtle) ease-out var(--animation-delay-medium) both;
+  opacity: 0;
+  transform: translateX(-2rem);
+  transition: opacity var(--transition-duration) ease-out, transform var(--transition-duration) ease-out;
+  transition-delay: 0.1s;
 }
 
 .lead {
   font-size: clamp(1rem, 2vw, 1.25rem);
   line-height: 1.6;
   opacity: 0.9;
-  animation: slideInLeft var(--animation-duration-subtle) ease-out var(--animation-delay-medium) both;
+  opacity: 0;
+  transform: translateX(-2rem);
+  transition: opacity var(--transition-duration) ease-out, transform var(--transition-duration) ease-out;
+  transition-delay: 0.2s;
 }
 
 /* CTA Buttons */
-.cta-buttons {
-  animation: slideInLeft var(--animation-duration-subtle) ease-out var(--animation-delay-medium) both;
-}
+.cta-buttons { opacity: 0; transform: translateX(-2rem); transition: opacity var(--transition-duration) ease-out, transform var(--transition-duration) ease-out; transition-delay: 0.3s;display: flex;justify-content: start; }
 
 .btn-primary {
   background-color: var(--primary-color);
@@ -227,10 +261,7 @@
 }
 
 /* Character Image */
-#me-cont {
-  padding: 2rem 0;
-  animation: slideInRight var(--animation-duration-subtle) var(--animation-ease) var(--animation-delay-medium) both;
-}
+#me-cont { padding: 2rem 0; opacity: 0; transform: translateX(2rem); transition: opacity var(--transition-duration) var(--transition-ease), transform var(--transition-duration) var(--transition-ease); transition-delay: 0.2s; }
 
 #me {
   max-width: 100%;
@@ -246,8 +277,11 @@
 }
 
 /* Platform Overview Section */
-.platform-overview {
-  animation: slideInUp var(--animation-duration-subtle) var(--animation-ease) var(--animation-delay-medium) both;
+.platform-overview { opacity: 0; transform: translateY(2rem); transition: opacity var(--transition-duration) var(--transition-ease), transform var(--transition-duration) var(--transition-ease); transition-delay: 0.2s; }
+
+.platform-overview .row {
+  display: flex;
+  align-items: stretch;
 }
 
 .platform-overview h3 {
@@ -268,7 +302,13 @@
   position: relative;
   overflow: hidden;
   backdrop-filter: blur(0.5rem);
-  animation: fadeIn var(--animation-duration-slow) var(--animation-ease) var(--animation-delay-slower) both;
+  opacity: 0;
+  transform: translateY(1rem);
+  transition: opacity var(--transition-duration) var(--transition-ease), transform var(--transition-duration) var(--transition-ease);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .platform-card:hover {
@@ -293,6 +333,7 @@
   line-height: 1.4;
   margin-bottom: 1rem;
   opacity: 0.9;
+  flex-grow: 1;
 }
 
 .card-icon {
@@ -313,8 +354,20 @@
 }
 
 /* Stats Section */
-.stats-section {
-  animation: slideInUp var(--animation-duration-subtle) var(--animation-ease) var(--animation-delay-small) both;
+.stats-section { opacity: 0; transform: translateY(2rem); transition: opacity var(--transition-duration) var(--transition-ease), transform var(--transition-duration) var(--transition-ease); transition-delay: 0.1s; }
+
+/* Entered state to reveal elements */
+#home.entered #title,
+#home.entered #title-name,
+#home.entered #sub-title,
+#home.entered .lead,
+#home.entered .cta-buttons,
+#home.entered #me-cont,
+#home.entered .platform-overview,
+#home.entered .platform-card,
+#home.entered .stats-section {
+  opacity: 1;
+  transform: translateX(0) translateY(0);
 }
 
 .stat-item {
@@ -350,67 +403,7 @@
   opacity: 0.9;
 }
 
-/* Floating Animation */
-@keyframes floating {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-1rem);
-  }
-}
-
-/* Animations */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes slideInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-3rem);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes slideInRight {
-  from {
-    opacity: 0;
-    transform: translateX(3rem);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes slideInUp {
-  from {
-    opacity: 0;
-    transform: translateY(2rem);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes shimmer {
-  0% {
-    transform: translateX(-100%);
-  }
-  100% {
-    transform: translateX(100%);
-  }
-}
+/* Removed keyframe animations in favor of transitions */
 
 /* Responsive Design */
 @media (max-width: 768px) {
@@ -572,5 +565,35 @@
   height: auto;
   display: block;
   margin: 0 auto;
+}
+
+/* Custom styles for landing page elements */
+#sub-title {
+  text-align: left;
+}
+
+.lead {
+  text-align: left;
+}
+
+.cta-buttons {
+  justify-content: start;
+  display: contents;
+}
+
+#title {
+  font-size: clamp(1.5rem, 3vw, 4rem);
+}
+
+/* Prevent cursor changes on hover */
+a, button, .btn, .platform-card, .stat-item, .nav-item, .footer-link, 
+router-link, [role="button"], .clickable, .cursor-pointer {
+  cursor: default !important;
+}
+
+a:hover, button:hover, .btn:hover, .platform-card:hover, .stat-item:hover, 
+.nav-item:hover, .footer-link:hover, router-link:hover, [role="button"]:hover, 
+.clickable:hover, .cursor-pointer:hover {
+  cursor: default !important;
 }
 </style>

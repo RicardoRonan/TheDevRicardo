@@ -10,7 +10,7 @@
           <div class="links-grid">
             <router-link to="/" class="footer-link">Home</router-link>
             <router-link to="/projects" class="footer-link">Projects</router-link>
-            <router-link to="/blog" class="footer-link">Blog</router-link>
+            <!-- <router-link to="/blog" class="footer-link">Blog</router-link> -->
             <router-link to="/resources" class="footer-link">Resources</router-link>
             <router-link to="/experience" class="footer-link">Experience</router-link>
             <router-link to="/testimonials" class="footer-link">Testimonials</router-link>
@@ -122,16 +122,6 @@ export default {
   margin-top: 4rem;
 }
 
-.site-footer::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%23ffffff" opacity="0.02"/><circle cx="75" cy="75" r="1" fill="%23ffffff" opacity="0.02"/><circle cx="50" cy="10" r="1" fill="%23ffffff" opacity="0.02"/><circle cx="10" cy="90" r="1" fill="%23ffffff" opacity="0.02"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-  pointer-events: none;
-}
 
 .footer-content {
   position: relative;

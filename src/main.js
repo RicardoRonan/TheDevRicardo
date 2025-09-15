@@ -8,6 +8,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 // Import Bootstrap JavaScript
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
+// Import NES.css for retro styling
+import "nes.css/css/nes.css";
+
 const app = createApp(App, { loading: true });
 
 // Global loader control

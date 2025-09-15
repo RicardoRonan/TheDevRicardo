@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
        <div class="back-navigation">
           <router-link to="/blog" class="btn btn-tertiary btn-sm back-link">
             <i class="fa-solid fa-arrow-left"></i>
@@ -117,9 +117,9 @@
       </div>
     </div>
   </section>
-</template>
+</template> -->
 
-<script>
+<!-- <script>
 import { onMounted, ref, computed } from 'vue';
 import { useRoute } from 'vue-router';
 import axios from 'axios';
@@ -252,9 +252,9 @@ export default {
     };
   }
 };
-</script>
+</script> -->
 
-<style scoped>
+<!-- <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
 /* Blog Page Container */
 .blog-page {
@@ -726,7 +726,7 @@ text-align: left;
   display: flex;
   flex-wrap: wrap;
   gap: 1.5rem;
-  justify-content: center;
+  justify-content: start;
 }
 
 .related-card {
@@ -841,4 +841,4 @@ text-align: left;
     transform: none;
   }
 }
-</style>
+</style> -->

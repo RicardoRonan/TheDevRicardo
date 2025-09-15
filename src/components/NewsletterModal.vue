@@ -1,6 +1,6 @@
 <template>
-  <div v-if="showModal" class="newsletter-modal-overlay" @click.self="closeModal">
-    <div class="newsletter-modal">
+  <div v-if="showModal" class="newsletter-modal-overlay entered" @click.self="closeModal">
+    <div class="newsletter-modal entered">
       <button class="modal-close" @click="closeModal" aria-label="Close newsletter modal">×</button>
       <div class="modal-avatar">
         <img src="https://i.postimg.cc/MH421x0m/pixel-ricardo.png" alt="Ricardo Moses avatar" />
@@ -73,7 +73,8 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  animation: fadeIn var(--animation-duration-subtle);
+  opacity: 0;
+  transition: opacity var(--transition-duration) var(--transition-ease);
 }
 
 .newsletter-modal {
@@ -85,7 +86,9 @@ export default {
   padding: 2.5rem 2rem 2rem 2rem;
   box-shadow: 0 2rem 4rem rgba(0,0,0,0.25);
   text-align: center;
-  animation: popIn var(--animation-duration-subtle) cubic-bezier(.5,1.8,.5,1) both;
+  opacity: 0;
+  transform: scale(0.96);
+  transition: opacity var(--transition-duration) var(--transition-ease), transform var(--transition-duration) var(--transition-ease);
 }
 
 .modal-close {
@@ -129,7 +132,6 @@ export default {
 
 .modal-content {
   margin-top: 2.5rem;
-  animation: popIn var(--animation-duration-subtle) cubic-bezier(.5,1.8,.5,1) both;
 }
 .modal-eyebrow {
   font-size: 0.9rem;
@@ -190,14 +192,9 @@ export default {
 .modal-note {
   font-style: italic;
 }
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-@keyframes popIn {
-  0% { transform: scale(0.8); opacity: 0; }
-  100% { transform: scale(1); opacity: 1; }
-}
+/* Entered states */
+.newsletter-modal-overlay.entered { opacity: 1; }
+.newsletter-modal.entered { opacity: 1; transform: scale(1); }
 @media (max-width: 480px) {
   .newsletter-modal {
     padding: 1.2rem 0.5rem 1.5rem 0.5rem;

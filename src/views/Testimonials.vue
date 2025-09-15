@@ -1,5 +1,5 @@
 <template>
-  <div class="testimonials-page">
+  <div class="testimonials-page" id="testimonials">
     <!-- Hero Section -->
     <section class="hero-section">
       <div class="container">
@@ -88,6 +88,13 @@
 </template>
 <script>
 export default {
+  mounted() {
+    const root = document.getElementById('testimonials')
+    if (root) { 
+      void root.offsetWidth
+      root.classList.add('entered') 
+    }
+  },
   data() {
     return {
       testimonials: [
@@ -194,16 +201,6 @@ export default {
   overflow: hidden;
 }
 
-.testimonials-page::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%23ffffff" opacity="0.02"/><circle cx="75" cy="75" r="1" fill="%23ffffff" opacity="0.02"/><circle cx="50" cy="10" r="1" fill="%23ffffff" opacity="0.02"/><circle cx="10" cy="90" r="1" fill="%23ffffff" opacity="0.02"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-  pointer-events: none;
-}
 
 /* Hero Section */
 .hero-section {
@@ -219,15 +216,20 @@ export default {
   color: var(--primary-color);
   text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.8);
   margin-bottom: 1rem;
-  animation: slideInDown var(--animation-duration-subtle) var(--animation-ease);
+  opacity: 0;
+  transform: translateY(-2rem);
+  transition: opacity var(--transition-duration) var(--transition-ease), transform var(--transition-duration) var(--transition-ease);
 }
 
 .hero-subtitle {
   font-size: clamp(1rem, 2vw, 1.25rem);
   color: var(--secondary-color);
-  max-width: 600px;
+  max-width: 37.5rem;
   margin: 0 auto;
-  animation: slideInUp var(--animation-duration-subtle) var(--animation-ease) var(--animation-delay-small) both;
+  opacity: 0;
+  transform: translateY(2rem);
+  transition: opacity var(--transition-duration) var(--transition-ease), transform var(--transition-duration) var(--transition-ease);
+  transition-delay: 0.1s;
 }
 
 /* Testimonials Content */
@@ -240,12 +242,14 @@ export default {
 /* Testimonials Grid */
 .testimonials-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(18.75rem, 1fr));
   gap: 2rem;
   padding: 2rem 1rem;
-  max-width: 1200px;
+  max-width: 75rem;
   margin: 0 auto;
-  animation: slideInUp var(--animation-duration-subtle) var(--animation-ease) both;
+  opacity: 0;
+  transform: translateY(2rem);
+  transition: opacity var(--transition-duration) var(--transition-ease), transform var(--transition-duration) var(--transition-ease);
 }
 
 /* Testimonial Card */
@@ -254,24 +258,25 @@ export default {
   border: 0.125rem solid var(--primary-color);
   border-radius: 0;
   padding: 2rem;
-  transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+  transition: all var(--transition-duration) var(--transition-ease);
   backdrop-filter: blur(0.5rem);
   position: relative;
   overflow: hidden;
-  animation: slideInUp var(--animation-duration-subtle) var(--animation-ease) both;
+  opacity: 0;
+  transform: translateY(2rem);
   flex: 1 1 22rem;
   max-width: 30rem;
   min-width: 22rem;
 }
 
-.testimonial-card:nth-child(1) { animation-delay: var(--animation-delay-small); }
-.testimonial-card:nth-child(2) { animation-delay: var(--animation-delay-medium); }
-.testimonial-card:nth-child(3) { animation-delay: var(--animation-delay-medium); }
-.testimonial-card:nth-child(4) { animation-delay: var(--animation-delay-large); }
-.testimonial-card:nth-child(5) { animation-delay: var(--animation-delay-large); }
-.testimonial-card:nth-child(6) { animation-delay: var(--animation-delay-larger); }
-.testimonial-card:nth-child(7) { animation-delay: var(--animation-delay-larger); }
-.testimonial-card:nth-child(8) { animation-delay: var(--animation-delay-largest); }
+.testimonial-card:nth-child(1) { transition-delay: 0.1s; }
+.testimonial-card:nth-child(2) { transition-delay: 0.15s; }
+.testimonial-card:nth-child(3) { transition-delay: 0.2s; }
+.testimonial-card:nth-child(4) { transition-delay: 0.25s; }
+.testimonial-card:nth-child(5) { transition-delay: 0.3s; }
+.testimonial-card:nth-child(6) { transition-delay: 0.35s; }
+.testimonial-card:nth-child(7) { transition-delay: 0.4s; }
+.testimonial-card:nth-child(8) { transition-delay: 0.45s; }
 
 .testimonial-card:hover {
   transform: translateY(-0.5rem);
@@ -361,7 +366,7 @@ export default {
 .star-icon {
   color: var(--primary-color);
   font-size: 1.2rem;
-  animation: pulse var(--animation-duration-infinite) infinite;
+  transition: opacity var(--transition-duration) var(--transition-ease);
 }
 
 .testimonial-name {
@@ -522,42 +527,13 @@ export default {
     text-decoration: none;
 }
 
-/* Animations */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes slideInDown {
-  from {
-    opacity: 0;
-    transform: translateY(-2rem);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideInUp {
-  from {
-    opacity: 0;
-    transform: translateY(2rem);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes shimmer {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
+/* Enter reveal */
+.testimonials-page.entered .hero-title,
+.testimonials-page.entered .hero-subtitle,
+.testimonials-page.entered .testimonials-grid,
+.testimonials-page.entered .testimonial-card {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* Responsive Design */
@@ -661,17 +637,17 @@ export default {
 /* High contrast mode support */
 @media (prefers-contrast: high) {
   .testimonial-card {
-    border-color: #ffffff;
-    background: #000000;
+    border-color: var(--text-color);
+    background: var(--background-color);
   }
   
   .avatar-frame {
-    border-color: #ffffff;
+    border-color: var(--text-color);
   }
   
   .testimonial-modal {
-    border-color: #ffffff;
-    background: #000000;
+    border-color: var(--text-color);
+    background: var(--background-color);
   }
 }
 </style>

@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div class="blog-page">
     <!-- Hero Section -->
     <section class="hero-section">
@@ -92,9 +92,9 @@
       </div>
     </section>
   </div>
-</template>
+</template> -->
 
-<script>
+<!-- <script>
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
 
@@ -161,9 +161,9 @@ export default {
     return { blogs, loading, error, retryLoad, formatDate, readingTime, truncateExcerpt, getBlogSlug };
   }
 };
-</script>
+</script> -->
 
-<style scoped>
+<!-- <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
 
 .blog-page {
@@ -529,4 +529,4 @@ export default {
     max-width: 4rem;
   }
 }
-</style>
+</style> -->

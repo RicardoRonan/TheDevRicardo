@@ -48,12 +48,12 @@
     <div v-else class="admin-dashboard">
       <!-- Selection Tabs -->
       <div class="admin-tabs">
-        <button :class="['tab-btn', { active: adminTab === 'blogs' }]" @click="adminTab = 'blogs'">Manage Blogs</button>
+        <!-- <button :class="['tab-btn', { active: adminTab === 'blogs' }]" @click="adminTab = 'blogs'">Manage Blogs</button> -->
         <button :class="['tab-btn', { active: adminTab === 'resources' }]" @click="adminTab = 'resources'">Manage Resources</button>
       </div>
 
       <!-- Blog Management Section -->
-      <div v-if="adminTab === 'blogs'">
+      <!-- <div v-if="adminTab === 'blogs'">
         <div class="admin-header">
           <h1 class="dashboard-title">Blog Management</h1>
           <button @click="logout" class="btn btn-tertiary btn-sm logout-btn">
@@ -62,7 +62,6 @@
           </button>
         </div>
 
-        <!-- Add/Edit Blog Form -->
         <div class="blog-form-section">
           <h2 class="section-title">{{ editingBlogId ? 'Edit Blog' : 'Add New Blog' }}</h2>
           <form @submit.prevent="editingBlogId ? updateBlog() : addBlog()" class="blog-form">
@@ -108,7 +107,6 @@
           </div>
         </div>
 
-        <!-- Blog List -->
         <div class="recent-blogs-section">
           <h2 class="section-title">Recent Blogs</h2>
           <div class="recent-blogs">
@@ -135,7 +133,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
 
       <!-- Resource Management Section -->
       <div v-if="adminTab === 'resources'">
@@ -404,7 +402,7 @@
 
 <script>
 import { resourcesService } from '../services/resourcesService.js';
-import { blogService } from '../services/blogService.js';
+// import { blogService } from '../services/blogService.js';
 
 export default {
   name: 'Admin',
@@ -443,18 +441,18 @@ export default {
       categoryMessageType: 'success',
       submittingCategory: false,
       adminTab: 'resources',
-      recentBlogs: [],
-      blogForm: {
-        title: '',
-        content: '',
-        author: '',
-        tagsInput: '',
-        imageUrl: ''
-      },
-      editingBlogId: null,
-      blogSubmitting: false,
-      blogMessage: '',
-      blogMessageType: 'success',
+      // recentBlogs: [],
+      // blogForm: {
+      //   title: '',
+      //   content: '',
+      //   author: '',
+      //   tagsInput: '',
+      //   imageUrl: ''
+      // },
+      // editingBlogId: null,
+      // blogSubmitting: false,
+      // blogMessage: '',
+      // blogMessageType: 'success',
     };
   },
   async mounted() {
@@ -463,7 +461,7 @@ export default {
     if (authToken) {
       this.isAuthenticated = true;
       await this.loadData();
-      await this.loadBlogs();
+      // await this.loadBlogs();
     }
   },
   methods: {
@@ -499,20 +497,20 @@ export default {
         
         this.categories = categoriesData;
         this.recentResources = resourcesData.slice(0, 5); // Show last 5
-        await this.loadBlogs();
+        // await this.loadBlogs();
       } catch (error) {
         this.showMessage('Failed to load data', 'error');
       }
     },
     
-    async loadBlogs() {
-      try {
-        const blogs = await blogService.getAllBlogs();
-        this.recentBlogs = blogs.slice(0, 5); // Show last 5
-      } catch (error) {
-        this.showBlogMessage('Failed to load blogs', 'error');
-      }
-    },
+    // async loadBlogs() {
+    //   try {
+    //     const blogs = await blogService.getAllBlogs();
+    //     this.recentBlogs = blogs.slice(0, 5); // Show last 5
+    //   } catch (error) {
+    //     this.showBlogMessage('Failed to load blogs', 'error');
+    //   }
+    // },
     
     async addResource() {
       this.submitting = true;
@@ -668,89 +666,89 @@ export default {
         behavior: 'smooth' 
       });
     },
-    async addBlog() {
-      this.blogSubmitting = true;
-      try {
-        const tags = this.blogForm.tagsInput.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0);
-        const blogData = {
-          title: this.blogForm.title,
-          content: this.blogForm.content,
-          author: this.blogForm.author,
-          date: new Date(),
-          tags,
-          imageUrl: this.blogForm.imageUrl || null
-        };
-        await blogService.addBlog(blogData);
-        this.showBlogMessage('Blog added successfully!', 'success');
-        this.resetBlogForm();
-        await this.loadBlogs();
-      } catch (error) {
-        this.showBlogMessage('Failed to add blog: ' + error.message, 'error');
-      } finally {
-        this.blogSubmitting = false;
-      }
-    },
-    async updateBlog() {
-      this.blogSubmitting = true;
-      try {
-        const tags = this.blogForm.tagsInput.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0);
-        const blogData = {
-          title: this.blogForm.title,
-          content: this.blogForm.content,
-          author: this.blogForm.author,
-          tags,
-          imageUrl: this.blogForm.imageUrl || null
-        };
-        await blogService.updateBlog(this.editingBlogId, blogData);
-        this.showBlogMessage('Blog updated successfully!', 'success');
-        this.resetBlogForm();
-        await this.loadBlogs();
-      } catch (error) {
-        this.showBlogMessage('Failed to update blog: ' + error.message, 'error');
-      } finally {
-        this.blogSubmitting = false;
-      }
-    },
-    async deleteBlog(id) {
-      if (confirm('Are you sure you want to delete this blog?')) {
-        try {
-          await blogService.deleteBlog(id);
-          this.showBlogMessage('Blog deleted successfully!', 'success');
-          await this.loadBlogs();
-        } catch (error) {
-          this.showBlogMessage('Failed to delete blog: ' + error.message, 'error');
-        }
-      }
-    },
-    editBlog(blog) {
-      this.blogForm = {
-        title: blog.title,
-        content: blog.content,
-        author: blog.author,
-        tagsInput: blog.tags ? blog.tags.join(', ') : '',
-        imageUrl: blog.imageUrl || ''
-      };
-      this.editingBlogId = blog.id;
-      document.querySelector('.blog-form').scrollIntoView({ behavior: 'smooth' });
-    },
-    resetBlogForm() {
-      this.blogForm = {
-        title: '',
-        content: '',
-        author: '',
-        tagsInput: '',
-        imageUrl: ''
-      };
-      this.editingBlogId = null;
-      this.blogMessage = '';
-    },
-    showBlogMessage(text, type = 'success') {
-      this.blogMessage = text;
-      this.blogMessageType = type;
-      setTimeout(() => {
-        this.blogMessage = '';
-      }, 5000);
-    },
+    // async addBlog() {
+    //   this.blogSubmitting = true;
+    //   try {
+    //     const tags = this.blogForm.tagsInput.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0);
+    //     const blogData = {
+    //       title: this.blogForm.title,
+    //       content: this.blogForm.content,
+    //       author: this.blogForm.author,
+    //       date: new Date(),
+    //       tags,
+    //       imageUrl: this.blogForm.imageUrl || null
+    //     };
+    //     await blogService.addBlog(blogData);
+    //     this.showBlogMessage('Blog added successfully!', 'success');
+    //     this.resetBlogForm();
+    //     await this.loadBlogs();
+    //   } catch (error) {
+    //     this.showBlogMessage('Failed to add blog: ' + error.message, 'error');
+    //   } finally {
+    //     this.blogSubmitting = false;
+    //   }
+    // },
+    // async updateBlog() {
+    //   this.blogSubmitting = true;
+    //   try {
+    //     const tags = this.blogForm.tagsInput.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0);
+    //     const blogData = {
+    //       title: this.blogForm.title,
+    //       content: this.blogForm.content,
+    //       author: this.blogForm.author,
+    //       tags,
+    //       imageUrl: this.blogForm.imageUrl || null
+    //     };
+    //     await blogService.updateBlog(this.editingBlogId, blogData);
+    //     this.showBlogMessage('Blog updated successfully!', 'success');
+    //     this.resetBlogForm();
+    //     await this.loadBlogs();
+    //   } catch (error) {
+    //     this.showBlogMessage('Failed to update blog: ' + error.message, 'error');
+    //   } finally {
+    //     this.blogSubmitting = false;
+    //   }
+    // },
+    // async deleteBlog(id) {
+    //   if (confirm('Are you sure you want to delete this blog?')) {
+    //     try {
+    //       await blogService.deleteBlog(id);
+    //       this.showBlogMessage('Blog deleted successfully!', 'success');
+    //       await this.loadBlogs();
+    //     } catch (error) {
+    //       this.showBlogMessage('Failed to delete blog: ' + error.message, 'error');
+    //     }
+    //   }
+    // },
+    // editBlog(blog) {
+    //   this.blogForm = {
+    //     title: blog.title,
+    //     content: blog.content,
+    //     author: blog.author,
+    //     tagsInput: blog.tags ? blog.tags.join(', ') : '',
+    //     imageUrl: blog.imageUrl || ''
+    //   };
+    //   this.editingBlogId = blog.id;
+    //   document.querySelector('.blog-form').scrollIntoView({ behavior: 'smooth' });
+    // },
+    // resetBlogForm() {
+    //   this.blogForm = {
+    //     title: '',
+    //     content: '',
+    //     author: '',
+    //     tagsInput: '',
+    //     imageUrl: ''
+    //   };
+    //   this.editingBlogId = null;
+    //   this.blogMessage = '';
+    // },
+    // showBlogMessage(text, type = 'success') {
+    //   this.blogMessage = text;
+    //   this.blogMessageType = type;
+    //   setTimeout(() => {
+    //     this.blogMessage = '';
+    //   }, 5000);
+    // },
     formatDate(date) {
       if (!date) return '';
       const d = date.seconds ? new Date(date.seconds * 1000) : new Date(date);
@@ -768,11 +766,11 @@ export default {
         ? 'fa-solid fa-check-circle' 
         : 'fa-solid fa-exclamation-triangle';
     },
-    blogMessageIcon() {
-      return this.blogMessageType === 'success' 
-        ? 'fa-solid fa-check-circle' 
-        : 'fa-solid fa-exclamation-triangle';
-    },
+    // blogMessageIcon() {
+    //   return this.blogMessageType === 'success' 
+    //     ? 'fa-solid fa-check-circle' 
+    //     : 'fa-solid fa-exclamation-triangle';
+    // },
   }
 };
 </script>

@@ -75,7 +75,14 @@
 
 <script>
 export default {
-  name: 'Experience'
+  name: 'Experience',
+  mounted() {
+    const root = document.getElementById('experience')
+    if (root) { 
+      void root.offsetWidth
+      root.classList.add('entered') 
+    }
+  }
 };
 </script>
 
@@ -91,7 +98,9 @@ export default {
   text-align: center;
   margin-bottom: 2rem;
   color: var(--secondary-color);
-  animation: fadeIn var(--animation-duration-subtle) var(--animation-ease);
+  opacity: 0;
+  transform: translateY(-1rem);
+  transition: opacity var(--transition-duration) var(--transition-ease), transform var(--transition-duration) var(--transition-ease);
 }
 
 .experience-item {
@@ -100,7 +109,9 @@ export default {
   border-radius: var(--border-radius);
   padding: 2rem;
   margin-bottom: 2rem;
-  transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+  transition: all var(--transition-duration) var(--transition-ease);
+  opacity: 0;
+  transform: translateY(1rem);
 }
 
 .experience-item:hover {
@@ -205,6 +216,30 @@ export default {
   
   .job-responsibilities li {
     font-size: 0.9rem;
+  }
+}
+
+/* Enter reveal */
+#experience.entered #experience-title,
+#experience.entered .experience-item {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.experience-item:nth-child(2) { transition-delay: 0.1s; }
+.experience-item:nth-child(4) { transition-delay: 0.2s; }
+.experience-item:nth-child(6) { transition-delay: 0.3s; }
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .experience-item:hover {
+    transform: none;
   }
 }
 </style>

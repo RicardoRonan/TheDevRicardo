@@ -192,16 +192,6 @@ console.log(
   animation: fadeIn var(--animation-duration-subtle) ease-in-out;
 }
 
-.about-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%23ffffff" opacity="0.02"/><circle cx="75" cy="75" r="1" fill="%23ffffff" opacity="0.02"/><circle cx="50" cy="10" r="1" fill="%23ffffff" opacity="0.02"/><circle cx="10" cy="90" r="1" fill="%23ffffff" opacity="0.02"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-  pointer-events: none;
-}
 
 /* About Header */
 .about-header {
@@ -283,17 +273,19 @@ console.log(
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
-  padding: 1rem;
+  padding: 1.5rem 1rem;
   background: rgba(255, 255, 255, 0.05);
   border: 0.125rem solid var(--primary-color);
   border-radius: 0;
   backdrop-filter: blur(0.5rem);
   transition: all var(--transition-duration) ease;
   min-width: 5rem;
+  text-align: center;
 }
 
 .stat-item:hover {
-  background: rgba(220, 20, 60, 0.2);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--secondary-color);
   transform: translateY(-0.25rem);
   box-shadow: 0 0.5rem 1rem rgba(220, 20, 60, 0.3);
 }
@@ -301,14 +293,16 @@ console.log(
 .stat-item i {
   color: var(--primary-color);
   font-size: 1.5rem;
+  filter: drop-shadow(0 0.125rem 0.25rem rgba(0, 0, 0, 0.5));
 }
 
 .stat-item span {
   font-family: var(--font-family-pixel);
   font-size: 0.7rem;
-  color: var(--text-color);
+  color: var(--secondary-color);
   text-transform: uppercase;
   letter-spacing: 0.05rem;
+  opacity: 0.9;
 }
 
 /* About Text Container */
@@ -358,8 +352,9 @@ console.log(
 .skills-grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 1.5rem;
   justify-content: center;
+  align-items: stretch;
   animation: slideInUp var(--animation-duration-subtle) var(--animation-ease) var(--animation-delay-large) both;
 }
 
@@ -367,45 +362,52 @@ console.log(
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
   gap: 0.5rem;
-  padding: 1rem;
-  background: rgba(0, 0, 0, 0.3);
-  border: 0.0625rem solid var(--secondary-color);
+  padding: 1.5rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 0.125rem solid var(--primary-color);
   border-radius: 0;
   transition: all var(--transition-duration) ease;
   flex: 1 1 8rem;
-  max-width: 10rem;
+  max-width: 12rem;
   min-width: 8rem;
-  animation: shimmer var(--animation-duration-infinite) infinite;
+  height: 8rem;
+  justify-content: space-between;
+  backdrop-filter: blur(0.5rem);
 }
 
 .skill-item:hover {
-  background: var(--secondary-color);
-  color: var(--background-color);
-  transform: translateY(-0.125rem);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--secondary-color);
+  transform: translateY(-0.25rem);
+  box-shadow: 0 0.5rem 1rem rgba(220, 20, 60, 0.3);
 }
 
 .skill-icon {
   font-size: 2rem;
   color: var(--primary-color);
+  margin-bottom: 0.25rem;
+  filter: drop-shadow(0 0.125rem 0.25rem rgba(0, 0, 0, 0.5));
   transition: color var(--transition-duration) ease;
 }
 
 .skill-item:hover .skill-icon {
-  color: var(--background-color);
+  color: var(--primary-color);
 }
 
 .skill-name {
   font-family: var(--font-family-pixel);
-  font-size: 0.5rem;
-  color: var(--text-color);
+  font-size: 0.7rem;
+  color: var(--secondary-color);
   text-transform: uppercase;
   letter-spacing: 0.05rem;
   transition: color var(--transition-duration) ease;
+  opacity: 0.9;
 }
 
 .skill-item:hover .skill-name {
-  color: var(--background-color);
+  color: var(--secondary-color);
 }
 
 /* Call to Action */
@@ -488,17 +490,21 @@ console.log(
 
 .fun-fact-item {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 1rem;
-  padding: 1.5rem;
+  text-align: center;
+  gap: 0.75rem;
+  padding: 1.5rem 1rem;
   background: rgba(255, 255, 255, 0.05);
   border: 0.125rem solid var(--primary-color);
   border-radius: 0;
   backdrop-filter: blur(0.5rem);
   transition: all var(--transition-duration) ease;
   flex: 1 1 15rem;
-  max-width: 25rem;
+  max-width: 20rem;
   min-width: 15rem;
+  height: auto;
+  justify-content: space-between;
 }
 
 .fun-fact-item:hover {
@@ -511,24 +517,28 @@ console.log(
 .fun-fact-item i {
   color: var(--primary-color);
   font-size: 2rem;
-  min-width: 3rem;
-  text-align: center;
+  margin-bottom: 0.25rem;
+  filter: drop-shadow(0 0.125rem 0.25rem rgba(0, 0, 0, 0.5));
 }
 
 .fact-content h4 {
   font-family: var(--font-family-pixel);
-  font-size: 0.9rem;
-  color: var(--secondary-color);
-  margin: 0 0 0.5rem 0;
+  font-size: 1rem;
+  color: var(--primary-color);
+  margin: 0.5rem 0 0.25rem 0;
   text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.8);
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
 }
 
 .fact-content p {
   font-family: var(--font-family-pixel);
-  font-size: 0.7rem;
-  color: var(--text-color);
+  font-size: 0.75rem;
+  color: var(--secondary-color);
   margin: 0;
-  line-height: 1.4;
+  line-height: 1.3;
+  opacity: 0.9;
+  flex-grow: 1;
 }
 #my-top-tracks {
 padding: 3rem 1rem 0;
@@ -604,15 +614,14 @@ padding: 3rem 1rem 0;
   }
   
   .skill-item {
-    padding: 0.75rem;
+    padding: 1.5rem 1rem;
     max-width: 100%;
     min-width: auto;
-    display: flex;
-    justify-content: center;
+    height: auto;
   }
   
   .skill-icon {
-    font-size: 1.5rem;
+    font-size: 2rem;
   }
   
   .skill-name {
@@ -634,14 +643,14 @@ padding: 3rem 1rem 0;
   }
   
   .fun-fact-item {
-    padding: 1rem;
+    padding: 1.5rem 1rem;
     max-width: 100%;
     min-width: auto;
+    height: auto;
   }
   
   .fun-fact-item i {
-    font-size: 1.5rem;
-    min-width: 2rem;
+    font-size: 2rem;
   }
   
   .floating-stats {
@@ -680,11 +689,11 @@ padding: 3rem 1rem 0;
   }
   
   .fact-content h4 {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
   }
   
   .fact-content p {
-    font-size: 0.6rem;
+    font-size: 0.7rem;
   }
   
   .cta-btn {
