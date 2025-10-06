@@ -354,7 +354,7 @@ export default {
 
 .hero-title {
   font-family: var(--font-family-pixel);
-  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
   color: var(--primary-color);
   text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.8);
   margin-bottom: 1rem;
@@ -362,7 +362,7 @@ export default {
 }
 
 .hero-subtitle {
-  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-size: clamp(0.9rem, 2vw, 1.2rem);
   color: var(--secondary-color);
   max-width: 600px;
   margin: 0 auto;
@@ -458,7 +458,7 @@ export default {
 
 .letter-title {
   font-family: var(--font-family-pixel);
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(1.2rem, 2.5vw, 1.8rem);
   color: var(--primary-color);
   margin-bottom: 2rem;
   text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.8);
@@ -518,7 +518,7 @@ export default {
 
 .resource-name {
   font-family: var(--font-family-pixel);
-  font-size: 1.1rem;
+  font-size: 0.9rem;
   color: var(--primary-color);
   margin-bottom: 0.5rem;
   text-transform: uppercase;
@@ -526,7 +526,7 @@ export default {
 }
 
 .resource-description {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   color: var(--secondary-color);
   line-height: 1.4;
   opacity: 0.9;
@@ -578,7 +578,7 @@ export default {
 
 .btn-sm {
   font-family: var(--font-family-pixel);
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   padding: 0.4rem 0.8rem;
   border-radius: 0;
   border-width: 0.125rem;
@@ -781,7 +781,7 @@ export default {
 
 .featured-title {
   font-family: var(--font-family-pixel);
-  font-size: 2rem;
+  font-size: 1.2rem;
   color: var(--primary-color);
   margin-bottom: 0.5rem;
   text-transform: uppercase;
@@ -790,7 +790,7 @@ export default {
 }
 
 .featured-description {
-  font-size: 1.1rem;
+  font-size: 0.9rem;
   color: var(--secondary-color);
   line-height: 1.4;
   opacity: 0.9;
@@ -825,7 +825,7 @@ export default {
   border-radius: 0;
   padding: 0.5rem 1rem;
   font-family: var(--font-family-pixel);
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.05rem;
   box-shadow: 0 0 0.5rem rgba(220, 20, 60, 0.3);
@@ -845,7 +845,7 @@ export default {
 
 .featured-actions .btn-lg {
   font-family: var(--font-family-pixel);
-  font-size: 1rem;
+  font-size: 0.8rem;
   padding: 1rem 2rem;
   border-radius: 0;
   border-width: 0.125rem;
@@ -873,14 +873,14 @@ export default {
 
 .add-resource-title {
   font-family: var(--font-family-pixel);
-  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
   color: var(--primary-color);
   margin-bottom: 1rem;
   text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.8);
 }
 
 .add-resource-text {
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: var(--secondary-color);
   max-width: 600px;
   margin: 0 auto 2rem auto;

@@ -229,7 +229,7 @@ export default {
 
 .hero-title {
   font-family: var(--font-family-pixel);
-  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
   color: var(--primary-color);
   text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.8);
   margin-bottom: 1rem;
@@ -237,7 +237,7 @@ export default {
 }
 
 .hero-subtitle {
-  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-size: clamp(0.9rem, 2vw, 1.2rem);
   color: var(--secondary-color);
   max-width: 600px;
   margin: 0 auto;
@@ -364,7 +364,7 @@ export default {
 
 .job-title {
   font-family: var(--font-family-pixel);
-  font-size: 1.5rem;
+  font-size: 1.1rem;
   color: var(--secondary-color);
   margin: 0 0 0.5rem 0;
   text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.8);
@@ -372,7 +372,7 @@ export default {
 
 .company-name {
   font-family: var(--font-family-pixel);
-  font-size: 1.1rem;
+  font-size: 0.9rem;
   color: var(--primary-color);
   margin: 0 0 0.75rem 0;
   font-style: italic;
@@ -380,7 +380,7 @@ export default {
 
 .job-duration {
   font-family: var(--font-family-pixel);
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   color: var(--text-color);
   margin: 0 0 0.5rem 0;
   display: flex;
@@ -432,7 +432,7 @@ export default {
 
 .job-summary {
   font-family: var(--font-family-pixel);
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   color: var(--text-color);
   line-height: 1.6;
   margin-bottom: 1.5rem;
@@ -448,7 +448,7 @@ export default {
 
 .job-responsibilities li {
   font-family: var(--font-family-pixel);
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   color: var(--text-color);
   line-height: 1.6;
   margin-bottom: 0.75rem;
@@ -507,7 +507,7 @@ export default {
 
 .achievements-title {
   font-family: var(--font-family-pixel);
-  font-size: 1.5rem;
+  font-size: 1.1rem;
   color: var(--secondary-color);
   text-align: center;
   margin: 0 0 2rem 0;
@@ -553,7 +553,7 @@ export default {
 
 .achievement-content h4 {
   font-family: var(--font-family-pixel);
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: var(--primary-color);
   margin: 0.5rem 0 0.25rem 0;
   text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.8);
@@ -563,7 +563,7 @@ export default {
 
 .achievement-content p {
   font-family: var(--font-family-pixel);
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   color: var(--secondary-color);
   margin: 0;
   line-height: 1.3;

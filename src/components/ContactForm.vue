@@ -151,7 +151,7 @@ export default {};
 
 .hero-title {
   font-family: var(--font-family-pixel);
-  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
   color: var(--primary-color);
   text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.8);
   margin-bottom: 1rem;
@@ -159,7 +159,7 @@ export default {};
 }
 
 .hero-subtitle {
-  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-size: clamp(0.9rem, 2vw, 1.2rem);
   color: var(--secondary-color);
   max-width: 600px;
   margin: 0 auto;
@@ -196,7 +196,7 @@ export default {};
 
 .form-title {
   font-family: var(--font-family-pixel);
-  font-size: 1.5rem;
+  font-size: 1.1rem;
   color: var(--secondary-color);
   margin: 0 0 0.5rem 0;
   text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.8);
@@ -204,7 +204,7 @@ export default {};
 
 .form-subtitle {
   font-family: var(--font-family-pixel);
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   color: var(--text-color);
   opacity: 0.8;
 }
@@ -231,7 +231,7 @@ export default {};
 .form-label {
   display: block;
   font-family: var(--font-family-pixel);
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   color: var(--primary-color);
   margin-bottom: 0.5rem;
   text-transform: uppercase;
@@ -243,7 +243,7 @@ export default {};
   width: 100%;
   padding: 0.75rem;
   font-family: var(--font-family-pixel);
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   background: rgba(0, 0, 0, 0.3);
   border: 0.125rem solid rgba(245, 245, 220, 0.3);
   border-radius: 0;
@@ -263,7 +263,7 @@ export default {};
 .form-textarea::placeholder {
   color: rgba(255, 255, 255, 0.5);
   font-family: var(--font-family-pixel);
-  font-size: 0.7rem;
+  font-size: 0.6rem;
 }
 
 .form-textarea {
@@ -283,7 +283,7 @@ export default {};
   gap: 0.5rem;
   padding: 1rem 2rem;
   font-family: var(--font-family-pixel);
-  font-size: 0.9rem;
+  font-size: 0.7rem;
   background-color: var(--primary-color);
   border: 0.125rem solid var(--primary-color);
   border-radius: 0;
@@ -302,7 +302,7 @@ export default {};
 }
 
 .btn-submit i {
-  font-size: 0.8rem;
+  font-size: 0.7rem;
 }
 
 /* Character Section */
@@ -345,7 +345,7 @@ export default {};
 
 .bubble-text {
   font-family: var(--font-family-pixel);
-  font-size: 0.7rem;
+  font-size: 0.6rem;
   margin: 0;
   text-transform: uppercase;
   letter-spacing: 0.05rem;
@@ -398,7 +398,7 @@ export default {};
 
 .info-item span {
   font-family: var(--font-family-pixel);
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   color: var(--text-color);
 }
 

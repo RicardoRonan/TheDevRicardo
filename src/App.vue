@@ -4,7 +4,7 @@
       <img src="./assets/loading-animation.gif" alt="Loading..." class="global-loader-gif" />
     </div>
     <router-view v-else />
-    <navBar v-if="!showLoader" />
+    <navBar />
     <Footer v-if="!showLoader" />
   </div>
 </template>

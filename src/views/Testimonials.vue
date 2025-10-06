@@ -212,7 +212,7 @@ export default {
 
 .hero-title {
   font-family: var(--font-family-pixel);
-  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
   color: var(--primary-color);
   text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.8);
   margin-bottom: 1rem;
@@ -222,7 +222,7 @@ export default {
 }
 
 .hero-subtitle {
-  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-size: clamp(0.9rem, 2vw, 1.2rem);
   color: var(--secondary-color);
   max-width: 37.5rem;
   margin: 0 auto;
@@ -371,7 +371,7 @@ export default {
 
 .testimonial-name {
   font-family: var(--font-family-pixel);
-  font-size: 1.1rem;
+  font-size: 0.9rem;
   color: var(--secondary-color);
   margin: 0;
   text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.8);
@@ -379,7 +379,7 @@ export default {
 
 .testimonial-role {
   font-family: var(--font-family-pixel);
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   color: var(--primary-color);
   margin: 0;
   text-transform: uppercase;
@@ -415,7 +415,7 @@ export default {
 
 .testimonial-content-text {
   font-family: var(--font-family-pixel);
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   line-height: 1.6;
   color: var(--text-color);
   margin: 0;
@@ -456,7 +456,7 @@ export default {
 
 .modal-title {
   font-family: var(--font-family-pixel);
-  font-size: 1.2rem;
+  font-size: 1rem;
   color: var(--secondary-color);
   margin: 0;
 }
@@ -502,7 +502,7 @@ export default {
 
 .btn {
   font-family: var(--font-family-pixel);
-  font-size: 0.9rem;
+  font-size: 0.7rem;
   padding: 0.75rem 2rem;
   border-radius: 0;
   border-width: 0.125rem;

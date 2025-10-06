@@ -140,7 +140,8 @@ export default {
 
 .hero-title {
   font-family: var(--font-family-pixel);
-  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  color: var(--primary-color);
   text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.8);
   margin-bottom: 1rem;
   opacity: 0;
@@ -149,7 +150,8 @@ export default {
 }
 
 .hero-subtitle {
-  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-size: clamp(0.9rem, 2vw, 1.2rem);
+  color: var(--secondary-color);
   max-width: 600px;
   margin: 0 auto;
   opacity: 0;
@@ -191,7 +193,7 @@ export default {
   font-size: 0.7rem;
   padding: 0.6rem 1rem;
   background: transparent;
-  color: var(--text-color);
+  color: var(--secondary-color);
   border: 2px solid var(--primary-color);
   border-radius: 4px;
   cursor: pointer;
@@ -204,6 +206,7 @@ export default {
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(220, 20, 60, 0.3);
   background: rgba(220, 20, 60, 0.1);
+  color: var(--text-color);
 }
 
 .filter-btn.active {
@@ -225,12 +228,14 @@ export default {
 .section-title {
   font-family: var(--font-family-pixel);
   font-size: clamp(1.8rem, 4vw, 2.5rem);
+  color: var(--primary-color);
   text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.8);
   margin-bottom: 1rem;
 }
 
 .section-subtitle {
   font-size: clamp(0.9rem, 2vw, 1.1rem);
+  color: var(--secondary-color);
   max-width: 600px;
   margin: 0 auto 1rem auto;
   opacity: 0.9;
@@ -239,7 +244,8 @@ export default {
 .instruction-text {
   font-family: var(--font-family-pixel);
   font-size: 0.7rem;
-  opacity: 0.7;
+  color: var(--secondary-color);
+  opacity: 0.8;
   margin: 0;
 }
 
@@ -249,7 +255,7 @@ export default {
   flex-wrap: wrap;
   gap: 2rem;
   padding: 2rem 1rem;
-  justify-content: start;
+  justify-content: center;
   opacity: 0;
   transform: translateY(2rem);
   transition: opacity var(--transition-duration) var(--transition-ease), transform var(--transition-duration) var(--transition-ease);
@@ -304,7 +310,7 @@ export default {
   .projects-grid {
     gap: 1.5rem;
     padding: 1rem;
-    justify-content: start;
+    justify-content: center;
   }
 }
 

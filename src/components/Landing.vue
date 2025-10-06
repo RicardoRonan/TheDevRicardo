@@ -40,10 +40,10 @@
       </div>
       
       <!-- Platform Overview Section -->
-      <div class="row mt-5">
+      <div class="row mt-3">
         <div class="col-12">
           <div class="platform-overview">
-            <h3 class="text-light text-center mb-5">Explore My Platform</h3>
+            <h3 class="text-light text-center mb-3">Explore My Platform</h3>
             <div class="row g-4">
               <!-- Portfolio Section -->
               <div class="col-lg-4 col-md-6">
@@ -90,7 +90,7 @@
       </div>
       
       <!-- Quick Stats Section -->
-      <div class="row mt-5">
+      <div class="row mt-3">
         <div class="col-12">
           <div class="stats-section">
             <div class="row g-4 text-center">
@@ -163,56 +163,60 @@ onMounted(() => {
 
 /* Text Content */
 .text-content {
-  padding: 2rem 0;
+  padding: 1rem 0;
   z-index: 2;
   position: relative;
 
 }
 
 #title {
-  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
   font-family: var(--font-family-pixel);
   text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.8);
-  line-height: 1.2;
+  line-height: 1.1;
   opacity: 0;
   transform: translateX(-2rem);
   text-align: left;
   transition: opacity var(--transition-duration) ease-out, transform var(--transition-duration) ease-out;
+  margin-bottom: 0.5rem;
 }
 
 #title-name {
-  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
   font-family: var(--font-family-pixel);
   text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.8);
-  line-height: 1.2;
+  line-height: 1.1;
   opacity: 0;
   color: var(--primary-color);
   transform: translateX(-2rem);
   text-align: left;
   transition: opacity var(--transition-duration) ease-out, transform var(--transition-duration) ease-out;
   transition-delay: 0.1s;
+  margin-bottom: 0.5rem;
 }
 
 #sub-title {
-  font-size: clamp(1.2rem, 3vw, 2rem);
+  font-size: clamp(0.9rem, 2vw, 1.2rem);
   font-family: var(--font-family-pixel);
   text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.8);
   color: var(--primary-color);
-  line-height: 1.3;
+  line-height: 1.2;
   opacity: 0;
   transform: translateX(-2rem);
   transition: opacity var(--transition-duration) ease-out, transform var(--transition-duration) ease-out;
   transition-delay: 0.1s;
+  margin-bottom: 0.75rem;
 }
 
 .lead {
-  font-size: clamp(1rem, 2vw, 1.25rem);
-  line-height: 1.6;
+  font-size: clamp(0.8rem, 1.5vw, 1rem);
+  line-height: 1.4;
   opacity: 0.9;
   opacity: 0;
   transform: translateX(-2rem);
   transition: opacity var(--transition-duration) ease-out, transform var(--transition-duration) ease-out;
   transition-delay: 0.2s;
+  margin-bottom: 1rem;
 }
 
 /* CTA Buttons */
@@ -222,8 +226,8 @@ onMounted(() => {
   background-color: var(--primary-color);
   border-color: var(--primary-color);
   font-family: var(--font-family-pixel);
-  font-size: 0.9rem;
-  padding: 0.75rem 2rem;
+  font-size: 0.7rem;
+  padding: 0.5rem 1.2rem;
   border-radius: 0;
   border-width: 0.125rem;
   transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
@@ -242,8 +246,8 @@ onMounted(() => {
 
 .btn-outline-light {
   font-family: var(--font-family-pixel);
-  font-size: 0.9rem;
-  padding: 0.75rem 2rem;
+  font-size: 0.7rem;
+  padding: 0.5rem 1.2rem;
   border-radius: 0;
   border-width: 0.125rem;
   transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
@@ -261,15 +265,15 @@ onMounted(() => {
 }
 
 /* Character Image */
-#me-cont { padding: 2rem 0; opacity: 0; transform: translateX(2rem); transition: opacity var(--transition-duration) var(--transition-ease), transform var(--transition-duration) var(--transition-ease); transition-delay: 0.2s; }
+#me-cont { padding: 1rem 0; opacity: 0; transform: translateX(2rem); transition: opacity var(--transition-duration) var(--transition-ease), transform var(--transition-duration) var(--transition-ease); transition-delay: 0.2s; }
 
 #me {
   max-width: 100%;
   height: auto;
-  width: clamp(18rem, 30vw, 22rem);
+  width: clamp(12rem, 20vw, 16rem);
   filter: drop-shadow(0.5rem 0.5rem 1rem rgba(0, 0, 0, 0.5));
   transition: transform var(--transition-duration) ease;
-  border: 1rem var(--primary-color) ridge;
+  border: 0.5rem var(--primary-color) ridge;
 }
 
 #me:hover {
@@ -286,16 +290,17 @@ onMounted(() => {
 
 .platform-overview h3 {
   font-family: var(--font-family-pixel);
-  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-size: clamp(1rem, 2vw, 1.5rem);
   text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.8);
   color: var(--secondary-color);
+  margin-bottom: 1rem;
 }
 
 .platform-card {
   background: rgba(255, 255, 255, 0.05);
   border: 0.125rem solid var(--primary-color);
   border-radius: 0;
-  padding: 2rem 1.5rem;
+  padding: 1rem 0.75rem;
   text-align: center;
   cursor: pointer;
   transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
@@ -321,24 +326,24 @@ onMounted(() => {
 .platform-card h4 {
   color: var(--primary-color);
   font-family: var(--font-family-pixel);
-  font-size: 1.2rem;
-  margin: 1rem 0 0.5rem 0;
+  font-size: 0.9rem;
+  margin: 0.5rem 0 0.25rem 0;
   text-transform: uppercase;
   letter-spacing: 0.05rem;
 }
 
 .platform-card p {
   color: var(--secondary-color);
-  font-size: 0.9rem;
-  line-height: 1.4;
-  margin-bottom: 1rem;
+  font-size: 0.7rem;
+  line-height: 1.3;
+  margin-bottom: 0.5rem;
   opacity: 0.9;
   flex-grow: 1;
 }
 
 .card-icon {
-  font-size: 2.5rem;
-  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+  margin-bottom: 0.25rem;
   filter: drop-shadow(0 0.125rem 0.25rem rgba(0, 0, 0, 0.5));
 }
 
@@ -374,7 +379,7 @@ onMounted(() => {
   background: rgba(255, 255, 255, 0.05);
   border: 0.125rem solid var(--primary-color);
   border-radius: 0;
-  padding: 2rem 1rem;
+  padding: 1rem 0.5rem;
   backdrop-filter: blur(0.5rem);
   transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
@@ -388,16 +393,16 @@ onMounted(() => {
 .stat-number {
   color: var(--primary-color);
   font-family: var(--font-family-pixel);
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(1.2rem, 2.5vw, 1.8rem);
   font-weight: bold;
   text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.8);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
 }
 
 .stat-label {
   color: var(--secondary-color);
   font-family: var(--font-family-pixel);
-  font-size: 0.9rem;
+  font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.05rem;
   opacity: 0.9;
@@ -409,27 +414,32 @@ onMounted(() => {
 @media (max-width: 768px) {
   .text-content {
     text-align: center;
-    padding: 1rem 0;
+    padding: 0.5rem 0;
   }
   
   #title {
-    font-size: 2rem;
-    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  #title-name {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
   }
   
   #sub-title {
-    font-size: 1.2rem;
-    margin-bottom: 1.5rem;
+    font-size: 0.8rem;
+    margin-bottom: 0.75rem;
   }
   
   .lead {
-    font-size: 1rem;
-    margin-bottom: 2rem;
+    font-size: 0.7rem;
+    margin-bottom: 1rem;
   }
   
   .btn-lg {
-    font-size: 0.8rem;
-    padding: 0.6rem 1.5rem;
+    font-size: 0.6rem;
+    padding: 0.4rem 1rem;
   }
   
   .cta-buttons {
@@ -441,102 +451,106 @@ onMounted(() => {
   
   .btn {
     width: 100%;
-    max-width: 15rem;
+    max-width: 12rem;
   }
   
   #me {
-    width: 18rem;
-    margin-bottom: 2rem;
+    width: 10rem;
+    margin-bottom: 1rem;
   }
   
   /* Platform Cards Mobile */
   .platform-card {
-    padding: 1.5rem 1rem;
-    margin-bottom: 1rem;
+    padding: 0.75rem 0.5rem;
+    margin-bottom: 0.5rem;
   }
   
   .platform-card h4 {
-    font-size: 1rem;
-  }
-  
-  .platform-card p {
     font-size: 0.8rem;
   }
   
+  .platform-card p {
+    font-size: 0.6rem;
+  }
+  
   .card-icon {
-    font-size: 2rem;
+    font-size: 1.2rem;
   }
   
   /* Stats Mobile */
   .stat-item {
-    padding: 1.5rem 1rem;
-    margin-bottom: 1rem;
+    padding: 0.75rem 0.5rem;
+    margin-bottom: 0.5rem;
   }
   
   .stat-number {
-    font-size: 1.8rem;
+    font-size: 1.2rem;
   }
   
   .stat-label {
-    font-size: 0.8rem;
+    font-size: 0.6rem;
   }
 }
 
 @media (max-width: 576px) {
   #title {
-    font-size: 1.8rem;
-  }
-  
-  #sub-title {
     font-size: 1rem;
   }
   
+  #title-name {
+    font-size: 1rem;
+  }
+  
+  #sub-title {
+    font-size: 0.7rem;
+  }
+  
   .lead {
-    display: none;
+    font-size: 0.6rem;
   }
   
   #me {
-    width: 16rem;
+    width: 8rem;
   }
   
   .btn-lg {
-    font-size: 0.7rem;
-    padding: 0.5rem 1.2rem;
+    font-size: 0.5rem;
+    padding: 0.3rem 0.8rem;
   }
   
   /* Platform Overview Mobile */
   .platform-overview h3 {
-    font-size: 1.5rem;
-    margin-bottom: 2rem;
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
   }
   
   .platform-card {
-    padding: 1rem 0.5rem;
+    padding: 0.5rem 0.25rem;
   }
   
   .platform-card h4 {
-    font-size: 0.9rem;
+    font-size: 0.7rem;
   }
   
   .platform-card p {
-    font-size: 0.75rem;
+    font-size: 0.5rem;
   }
   
   .card-icon {
-    font-size: 1.8rem;
+    font-size: 1rem;
   }
   
   /* Stats Mobile */
   .stat-item {
-    padding: 1rem 0.5rem;
+    padding: 0.5rem 0.25rem;
   }
   
   .stat-number {
-    font-size: 1.5rem;
+    font-size: 1rem;
   }
   
   .stat-label {
-    font-size: 0.7rem;
+    font-size: 0.5rem;
   }
 }
 

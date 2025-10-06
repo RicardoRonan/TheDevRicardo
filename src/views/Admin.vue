@@ -805,7 +805,7 @@ export default {
 
 .auth-title {
   font-family: var(--font-family-pixel);
-  font-size: 2rem;
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
   color: var(--primary-color);
   margin-bottom: 0.5rem;
   text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.8);
@@ -814,7 +814,7 @@ export default {
 .auth-subtitle {
   color: var(--secondary-color);
   margin-bottom: 2rem;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
 }
 
 .auth-form {
@@ -825,7 +825,7 @@ export default {
 
 .auth-btn {
   font-family: var(--font-family-pixel);
-  font-size: 1rem;
+  font-size: 0.7rem;
   padding: 1rem 2rem;
   border-radius: 0;
   border-width: 0.125rem;
@@ -844,7 +844,7 @@ export default {
   border: 0.125rem solid var(--primary-color);
   color: var(--primary-color);
   font-family: var(--font-family-pixel);
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -868,7 +868,7 @@ export default {
 
 .dashboard-title {
   font-family: var(--font-family-pixel);
-  font-size: 2.5rem;
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
   color: var(--primary-color);
   text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.8);
   margin: 0;
@@ -876,7 +876,7 @@ export default {
 
 .logout-btn {
   font-family: var(--font-family-pixel);
-  font-size: 0.9rem;
+  font-size: 0.7rem;
   padding: 0.75rem 1.5rem;
   border-radius: 0;
   border-width: 0.125rem;
@@ -902,7 +902,7 @@ export default {
 
 .section-title {
   font-family: var(--font-family-pixel);
-  font-size: 1.5rem;
+  font-size: 1.1rem;
   color: var(--secondary-color);
   margin-bottom: 2rem;
   text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.8);
@@ -929,7 +929,7 @@ export default {
 .form-label {
   display: block;
   font-family: var(--font-family-pixel);
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   color: var(--primary-color);
   margin-bottom: 0.5rem;
   text-transform: uppercase;
@@ -946,7 +946,7 @@ export default {
   border-radius: 0;
   color: var(--text-color);
   font-family: var(--font-family-pixel);
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   transition: all var(--transition-duration) ease;
 }
 
@@ -985,7 +985,7 @@ export default {
 
 .checkbox-label {
   font-family: var(--font-family-pixel);
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   color: var(--secondary-color);
   text-transform: uppercase;
   letter-spacing: 0.05rem;
@@ -1002,7 +1002,7 @@ export default {
 .submit-btn,
 .reset-btn {
   font-family: var(--font-family-pixel);
-  font-size: 0.9rem;
+  font-size: 0.7rem;
   padding: 1rem 2rem;
   border-radius: 0;
   border-width: 0.125rem;
@@ -1033,7 +1033,7 @@ export default {
   padding: 1rem;
   border-radius: 0;
   font-family: var(--font-family-pixel);
-  font-size: 0.9rem;
+  font-size: 0.7rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -1094,7 +1094,7 @@ export default {
 
 .resource-name {
   font-family: var(--font-family-pixel);
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: var(--primary-color);
   margin: 0 0 0.25rem 0;
   text-transform: uppercase;
@@ -1103,7 +1103,7 @@ export default {
 
 .resource-category {
   font-family: var(--font-family-pixel);
-  font-size: 0.7rem;
+  font-size: 0.6rem;
   color: var(--secondary-color);
   margin: 0 0 0.25rem 0;
   text-transform: uppercase;
@@ -1111,7 +1111,7 @@ export default {
 }
 
 .resource-description {
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   color: var(--text-color);
   margin: 0;
   opacity: 0.8;
@@ -1125,7 +1125,7 @@ export default {
 
 .btn-sm {
   font-family: var(--font-family-pixel);
-  font-size: 0.7rem;
+  font-size: 0.6rem;
   padding: 0.4rem 0.8rem;
   border-radius: 0;
   border-width: 0.125rem;
