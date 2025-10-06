@@ -120,6 +120,9 @@ export default {
   position: relative;
   overflow: hidden;
   margin-top: 4rem;
+  background: var(--background-color);
+  border-top: 0.125rem solid var(--primary-color);
+  padding: 3rem 0 2rem 0;
 }
 
 
@@ -127,7 +130,8 @@ export default {
   position: relative;
   z-index: 2;
   margin: 0 auto;
-  padding: 0rem 2rem 0rem;
+  padding: 0 2rem;
+  max-width: 1200px;
 }
 
 /* Footer Top */
@@ -220,6 +224,9 @@ export default {
   letter-spacing: 0.05rem;
   transition: all var(--transition-duration) ease;
   cursor: pointer;
+  padding: 0.25rem 0;
+  border-left: 0.125rem solid transparent;
+  padding-left: 0.5rem;
 }
 
 .footer-link:hover {
@@ -229,8 +236,8 @@ export default {
 }
 
 .footer-link.router-link-active {
-  color: var(--secondary-color);
-  border-left-color: var(--secondary-color);
+  color: var(--primary-color);
+  border-left-color: var(--primary-color);
 }
 
 /* Footer Contact */
@@ -246,7 +253,8 @@ export default {
   gap: 0.75rem;
   font-family: var(--font-family-pixel);
   font-size: 0.8rem;
-  color: var(--text-color);
+  color: var(--secondary-color);
+  transition: all var(--transition-duration) ease;
 }
 
 .contact-item i {
@@ -328,7 +336,7 @@ export default {
 .copyright-text {
   font-family: var(--font-family-pixel);
   font-size: 0.7rem;
-  color: var(--text-color);
+  color: var(--secondary-color);
   margin: 0 0 0.5rem 0;
   opacity: 0.8;
 }
@@ -393,6 +401,9 @@ export default {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  .footer-content {
+    padding: 0 1rem;
+  }
   
   .footer-top {
     flex-direction: column;
@@ -439,6 +450,10 @@ export default {
 }
 
 @media (max-width: 576px) {
+  .footer-content {
+    padding: 0 0.5rem;
+  }
+  
   .footer-top {
     gap: 1.5rem;
   }

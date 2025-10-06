@@ -185,7 +185,7 @@ export default {
   background: rgba(220, 20, 60, 0.1);
   backdrop-filter: blur(0.5rem);
   border: 2px solid var(--primary-color);
-  border-radius: 8px;
+  border-radius: 0;
 }
 
 .filter-btn {
@@ -195,7 +195,7 @@ export default {
   background: transparent;
   color: var(--secondary-color);
   border: 2px solid var(--primary-color);
-  border-radius: 4px;
+  border-radius: 0;
   cursor: pointer;
   transition: all 0.2s ease-out;
   text-transform: uppercase;

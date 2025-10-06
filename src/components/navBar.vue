@@ -1,6 +1,6 @@
 <template>
   <!-- Floating Bottom Navigation Bar -->
-  <nav class="bottom-nav pixel-border neon-glow retro-bg scanline-bg">
+  <nav class="bottom-nav pixel-border neon-glow retro-bg scanline-bg" :class="{ 'nav-hidden': isNavHidden }">
     <div class="nav-container">
       <!-- Navigation Links -->
       <router-link 
@@ -61,7 +61,57 @@
 </template>
 <script>
 export default {
-  name: 'NavBar'
+  name: 'NavBar',
+  data() {
+    return {
+      isNavHidden: false,
+      lastScrollY: 0,
+      scrollThreshold: 10, // Minimum scroll distance to trigger hide/show
+      hideDelay: 100 // Delay before hiding navbar (ms)
+    }
+  },
+  mounted() {
+    this.addScrollListener();
+  },
+  beforeUnmount() {
+    this.removeScrollListener();
+  },
+  methods: {
+    addScrollListener() {
+      window.addEventListener('scroll', this.handleScroll, { passive: true });
+    },
+    removeScrollListener() {
+      window.removeEventListener('scroll', this.handleScroll);
+    },
+    handleScroll() {
+      const currentScrollY = window.scrollY;
+      const scrollDifference = Math.abs(currentScrollY - this.lastScrollY);
+      
+      // Only trigger if scroll difference is significant
+      if (scrollDifference < this.scrollThreshold) {
+        return;
+      }
+      
+      // Clear any existing timeout
+      if (this.hideTimeout) {
+        clearTimeout(this.hideTimeout);
+      }
+      
+      if (currentScrollY > this.lastScrollY && currentScrollY > 100) {
+        // Scrolling down and past 100px - hide navbar
+        this.hideTimeout = setTimeout(() => {
+          this.isNavHidden = true;
+          this.$emit('nav-hidden', true);
+        }, this.hideDelay);
+      } else if (currentScrollY < this.lastScrollY) {
+        // Scrolling up - show navbar immediately
+        this.isNavHidden = false;
+        this.$emit('nav-hidden', false);
+      }
+      
+      this.lastScrollY = currentScrollY;
+    }
+  }
 };
 </script>
 <style scoped>
@@ -84,6 +134,13 @@ export default {
   display: block !important;
   visibility: visible !important;
   opacity: 1 !important;
+}
+
+/* Hidden state */
+.bottom-nav.nav-hidden {
+  transform: translateX(-50%) translateY(calc(100% + 2rem));
+  opacity: 0;
+  pointer-events: none;
 }
 
 .nav-container {
@@ -179,6 +236,10 @@ export default {
   .bottom-nav {
     bottom: 1.5rem;
     padding: 1rem 1.5rem;
+  }
+  
+  .bottom-nav.nav-hidden {
+    transform: translateX(-50%) translateY(calc(100% + 3rem));
   }
   
   .nav-container {
@@ -367,6 +428,10 @@ export default {
     padding: 1.25rem 2rem;
   }
   
+  .bottom-nav.nav-hidden {
+    transform: translateX(-50%) translateY(calc(100% + 4rem));
+  }
+  
   .nav-container {
     gap: 1.25rem;
   }
@@ -423,6 +488,16 @@ export default {
 
 /* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
+  .bottom-nav {
+    transition: none;
+  }
+  
+  .bottom-nav.nav-hidden {
+    transform: translateX(-50%) translateY(calc(100% + 2rem));
+    opacity: 0;
+    pointer-events: none;
+  }
+  
   .nav-item {
     transition: none;
   }

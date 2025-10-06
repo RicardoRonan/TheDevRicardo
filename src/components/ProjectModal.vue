@@ -15,7 +15,7 @@
     >
       <!-- Modal Header -->
       <div class="modal-header">
-        <h2 id="modal-title" class="modal-title nes-text is-primary">
+        <h2 id="modal-title" class="modal-title">
           {{ projectData.title }}
         </h2>
         <button 
@@ -32,24 +32,24 @@
         <!-- Project Info -->
         <div class="project-info">
           <div class="info-row">
-            <span class="info-label nes-text is-success">Company:</span>
+            <span class="info-label">Company:</span>
             <span class="info-value">{{ projectData.company }}</span>
           </div>
           
           <div class="info-row">
-            <span class="info-label nes-text is-success">Category:</span>
+            <span class="info-label">Category:</span>
             <span class="info-value">{{ projectData.category === 'client' ? 'Client Work' : 'Personal Project' }}</span>
           </div>
           
           <div class="description-row">
-            <span class="info-label nes-text is-success">Description:</span>
+            <span class="info-label">Description:</span>
             <p class="info-description">{{ projectData.description }}</p>
           </div>
         </div>
 
         <!-- Tech Stack -->
         <div class="tech-section">
-          <h3 class="section-title nes-text is-warning">Tech Stack</h3>
+          <h3 class="section-title">Tech Stack</h3>
           <div class="tech-tags">
             <span 
               v-for="tech in projectData.tech" 
@@ -63,11 +63,11 @@
 
         <!-- Project Images -->
         <div class="images-section">
-          <h3 class="section-title nes-text is-warning">Project Preview</h3>
+          <h3 class="section-title">Project Preview</h3>
           
           <!-- Landing Page Image -->
           <div v-if="projectData.landingImage" class="image-container">
-            <h4 class="image-title nes-text is-primary">Landing Page</h4>
+            <h4 class="image-title">Landing Page</h4>
             <img 
               :src="projectData.landingImage" 
               :alt="`${projectData.title} landing page`"
@@ -78,7 +78,7 @@
 
           <!-- Full Site Image -->
           <div v-if="projectData.fullImage" class="image-container">
-            <h4 class="image-title nes-text is-primary">Full Site</h4>
+            <h4 class="image-title">Full Site</h4>
             <img 
               :src="projectData.fullImage" 
               :alt="`${projectData.title} full site`"
@@ -89,7 +89,7 @@
 
           <!-- Fallback to original image if no specific images -->
           <div v-if="!projectData.landingImage && !projectData.fullImage && projectData.img" class="image-container">
-            <h4 class="image-title nes-text is-primary">Project Screenshot</h4>
+            <h4 class="image-title">Project Screenshot</h4>
             <img 
               :src="projectData.img" 
               :alt="`${projectData.title} screenshot`"
@@ -158,6 +158,7 @@ export default {
         
         // Prevent body scroll
         document.body.style.overflow = 'hidden';
+        
       } else {
         // Restore body scroll
         document.body.style.overflow = '';
@@ -196,7 +197,7 @@ export default {
 .modal-content {
   background: var(--background-color);
   border: 4px solid var(--primary-color);
-  border-radius: 8px;
+  border-radius: 0;
   max-width: 800px;
   width: 100%;
   max-height: 90vh;
@@ -229,6 +230,7 @@ export default {
   font-family: var(--font-family-pixel);
   font-size: 1.2rem;
   margin: 0;
+  color: var(--primary-color);
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
   line-height: 1.3;
 }
@@ -263,6 +265,7 @@ export default {
   font-size: 0.7rem;
   min-width: 120px;
   margin-right: 1rem;
+  color: var(--primary-color);
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
 }
 
@@ -289,7 +292,7 @@ export default {
   padding: 1rem;
   background: rgba(220, 20, 60, 0.1);
   border: 2px solid var(--primary-color);
-  border-radius: 4px;
+  border-radius: 0;
 }
 
 .tech-section {
@@ -300,6 +303,7 @@ export default {
   font-family: var(--font-family-pixel);
   font-size: 0.8rem;
   margin-bottom: 1rem;
+  color: var(--primary-color);
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
 }
 
@@ -316,7 +320,7 @@ export default {
   background: var(--primary-color);
   color: var(--text-color);
   border: 2px solid var(--primary-color);
-  border-radius: 4px;
+  border-radius: 0;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
 }
 
@@ -337,6 +341,7 @@ export default {
   font-family: var(--font-family-pixel);
   font-size: 0.7rem;
   margin-bottom: 0.5rem;
+  color: var(--primary-color);
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
 }
 
@@ -345,7 +350,7 @@ export default {
   max-width: 100%;
   height: auto;
   border: 3px solid var(--primary-color);
-  border-radius: 4px;
+  border-radius: 0;
   background: var(--text-color);
   padding: 0.5rem;
   box-shadow: 0 4px 8px rgba(220, 20, 60, 0.3);

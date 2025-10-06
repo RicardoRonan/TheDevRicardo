@@ -4,7 +4,8 @@
       <img src="./assets/loading-animation.gif" alt="Loading..." class="global-loader-gif" />
     </div>
     <router-view v-else />
-    <navBar />
+    <navBar @nav-hidden="handleNavHidden" />
+    <ScrollToTop :is-nav-hidden="isNavHidden" />
     <Footer v-if="!showLoader" />
   </div>
 </template>
@@ -12,10 +13,12 @@
 <script>
 import navBar from "./components/navBar.vue";
 import Footer from "./components/Footer.vue";
+import ScrollToTop from "./components/ScrollToTop.vue";
 export default {
   components: {
     navBar,
     Footer,
+    ScrollToTop,
   },
   props: {
     loading: {
@@ -26,11 +29,17 @@ export default {
   data() {
     return {
       showLoader: this.loading,
+      isNavHidden: false,
     };
   },
   watch: {
     loading(val) {
       this.showLoader = val;
+    }
+  },
+  methods: {
+    handleNavHidden(isHidden) {
+      this.isNavHidden = isHidden;
     }
   },
   mounted() {
