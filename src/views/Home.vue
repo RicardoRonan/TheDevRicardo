@@ -39,12 +39,12 @@ export default {
 
 /* Ensure smooth transitions between sections */
 .content-sections > * {
-  scroll-margin-top: 2rem;
+  scroll-margin-top: var(--space-8);
 }
 
 /* Add subtle fade-in animation for content sections */
 .content-sections > *:nth-child(1) {
-  animation: fadeInUp var(--animation-duration-subtle) var(--animation-ease) var(--animation-delay-small) both;
+  animation: fadeInUp var(--duration-slow) var(--ease-standard) var(--animation-delay-small) both;
 }
 
 @keyframes fadeInUp {
@@ -61,7 +61,7 @@ export default {
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .content-sections > * {
-    scroll-margin-top: 1rem;
+    scroll-margin-top: var(--space-4);
   }
 }
 

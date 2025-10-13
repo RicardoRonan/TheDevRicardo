@@ -126,7 +126,7 @@ export default {
   backdrop-filter: blur(1rem);
   border: 0.125rem solid var(--primary-color);
   border-radius: 0;
-  padding: 0.75rem 1rem;
+  padding: var(--space-3) var(--space-4);
   box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.6);
   transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
   max-width: calc(100vw - 2rem);
@@ -145,7 +145,7 @@ export default {
 
 .nav-container {
   display: flex;
-  gap: 0.75rem;
+  gap: var(--space-3);
   align-items: center;
   justify-content: center;
   flex-wrap: nowrap;
@@ -292,7 +292,7 @@ export default {
   }
   
   .nav-container {
-    gap: 0.75rem;
+    gap: var(--space-3);
   }
   
   .nav-item {

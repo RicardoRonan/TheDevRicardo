@@ -2,6 +2,9 @@ import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router";
 
+// Import UX Foundation CSS
+import "./styles/ux-ui-foundation.css";
+
 // Import Bootstrap CSS
 import "bootstrap/dist/css/bootstrap.min.css";
 

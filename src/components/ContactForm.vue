@@ -20,7 +20,7 @@
         <div class="row g-4 align-items-center">
           <!-- Contact Form -->
           <div class="col-lg-6 col-md-12">
-            <div class="contact-form-container">
+            <div class="retro-card contact-form-container">
               <form action="https://formspree.io/f/mnqwedov" method="POST" class="contact-form">
                 <div class="form-header">
                   <h3 class="form-title">Send Message</h3>
@@ -34,7 +34,7 @@
                       <input
                         type="text"
                         id="firstname_field"
-                        class="form-input"
+                        class="retro-input form-input"
                         placeholder="Enter your first name"
                         required
                         name="Firstname"
@@ -45,7 +45,7 @@
                       <input
                         type="text"
                         id="surname_field"
-                        class="form-input"
+                        class="retro-input form-input"
                         placeholder="Enter your last name"
                         required
                         name="Surname"
@@ -58,7 +58,7 @@
                     <input
                       type="email"
                       id="email_field"
-                      class="form-input"
+                      class="retro-input form-input"
                       placeholder="Enter your email address"
                       required
                       name="Email"
@@ -69,7 +69,7 @@
                     <label for="textarea_field" class="form-label">Message</label>
                     <textarea
                       id="textarea_field"
-                      class="form-textarea"
+                      class="retro-textarea form-textarea"
                       placeholder="Tell me about your project or just say hello!"
                       required
                       name="Message"
@@ -78,7 +78,7 @@
                   </div>
 
                   <div class="form-submit">
-                    <button type="submit" class="btn btn-primary btn-submit">
+                    <button type="submit" class="retro-btn btn-submit">
                       <i class="fa-solid fa-paper-plane"></i>
                       Send Message
                     </button>
